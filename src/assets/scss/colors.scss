@@ -1,0 +1,11 @@
+$primary-color: #74BCFF;
+$secondary-color: #806bff;
+$white-color: #e8e8e8;
+$text-color: #495057;
+
+$primary-color-rgb: rgb(116, 188, 255);
+$secondary-color-rgb: rgb(128, 107, 255);
+
+@function opacityColor($rgb-color, $opacity) {
+  @return rgba($rgb-color, $opacity)
+}

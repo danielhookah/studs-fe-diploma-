@@ -1,0 +1,10 @@
+.filter-icon {
+  &.custom {
+    width: 100%;
+    color: $secondary-color;
+    border: 2px solid $secondary-color;
+    border-radius: 10px;
+    background-color: white;
+    height: 40px;
+  }
+}

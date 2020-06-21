@@ -1,0 +1,60 @@
+.multiselect {
+  height: 40px;
+  box-sizing: border-box;
+  border: 2px solid $secondary-color;
+  border-radius: 10px;
+
+  &.multiselect--active {
+    border-radius: unset;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+
+  & * {
+    min-height: unset;
+  }
+
+  & .multiselect__content-wrapper {
+    border: 2px solid $secondary-color;
+    border-top: unset;
+    width: calc(100% + 4px);
+    margin-left: -2px;
+  }
+
+  .multiselect__tags {
+    height: 36px;
+    border-radius: 10px;
+    line-height: 10px;
+    border: unset;
+
+    & span.multiselect__placeholder {
+      padding-left: 4px;
+      padding-top: 4px;
+      font-family: Ubuntu, sans-serif;
+      font-style: normal;
+      font-weight: 300;
+      font-size: 1rem;
+
+      color: #495057;
+    }
+
+    & span.multiselect__single {
+      padding-left: 4px;
+      font-family: Ubuntu, sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 1rem;
+
+      color: $text-color;
+    }
+  }
+
+  .multiselect__select {
+    padding-bottom: 8px;
+  }
+
+  .multiselect__content-wrapper {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+}

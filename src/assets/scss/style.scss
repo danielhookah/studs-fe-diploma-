@@ -1,0 +1,43 @@
+@use "partials/partial";
+
+@import "reset";
+@import "mixins/mixins";
+@import "colors";
+@import "fonts";
+@import "text";
+@import "form/forms";
+@import "modals/glass-modal";
+@import "button";
+@import "icons";
+
+.box { @include transform(rotate(30deg)); }
+
+//%message-shared {
+//  border: 2px solid #ccc;
+//  padding: 10px;
+//  color: #333;
+//}
+//.box {
+//  @extend %message-shared;
+//  border-color: green;
+//}
+
+//.box[kek="lol"] {
+//  float: left;
+//  width: 600px / 960px * 100%;
+//}
+
+p {
+  color: red;
+}
+
+div {
+  font-family: Ubuntu, sans-serif;
+  font-style: normal;
+  font-weight: 300;
+}
+
+.main-wrapper {
+  height: 100%;
+  background-color: $primary-color;
+}
