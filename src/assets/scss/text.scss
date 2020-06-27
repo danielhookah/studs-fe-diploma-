@@ -1,12 +1,11 @@
-input {
-  font-weight: 300;
-  border: unset;
+h1 {
+  &.huge-title {
+    @extend %ubuntu-light;
+    font-size: 50px;
+  }
 
-  &::placeholder {
-    font-family: Ubuntu, sans-serif;
-    font-style: normal;
-    font-weight: 300;
-
-    color: darkgray;
+  &.middle-title {
+    @extend %ubuntu-light;
+    font-size: 30px;
   }
 }

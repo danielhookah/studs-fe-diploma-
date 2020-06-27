@@ -1,10 +1,10 @@
 <template>
-  <div id="guest-main" class="main-wrapper">
+  <div>
     <router-view/>
     <!--  MOBILE  -->
     <div v-if="isMobileWidth()">
       <div class="search-project-wrapper">
-        <b-container>
+        <b-container class="d-none">
           <b-row>
             <b-col cols="10">
               <FilterSearchInput class="mt-3"/>
@@ -35,7 +35,6 @@
         </b-modal>
       </div>
       <ProjectList/>
-      <CreateAccountButton/>
     </div>
     <!--  DESKTOP  -->
     <div v-else>
@@ -51,7 +50,6 @@
 
 <script>
 import ProjectList from '@/views/PublicProject/components/ProjectList'
-import CreateAccountButton from '@/views/PublicProject/components/details/CreateAccountButton'
 import DesktopGuestSidebar from '@/views/PublicProject/components/DesktopGuestSidebar'
 import TogglerButton from '@/views/PublicProject/components/details/TogglerButton'
 import FilterSearchInput from '@/views/PublicProject/components/details/FilterSearchInput'
@@ -64,7 +62,7 @@ export default {
       selectOptions: ['Select option', 'options', 'selected', 'mulitple', 'label', 'searchable', 'clearOnSelect', 'hideSelected', 'maxHeight', 'allowEmpty', 'showLabels', 'onChange', 'touched']
     }
   },
-  components: { FilterSearchInput, TogglerButton, DesktopGuestSidebar, CreateAccountButton, ProjectList },
+  components: { FilterSearchInput, TogglerButton, DesktopGuestSidebar, ProjectList },
   created () {
 
   }

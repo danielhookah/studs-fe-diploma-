@@ -1,3 +1,40 @@
+.btn-secondary {
+  color: $secondary-color;
+  background-color: $white-color;
+  border: 1px solid $white-color;
+
+  &:hover {
+    background-color: opacityColor($white-color, 0.1);
+    border: 1px solid opacityColor($white-color, 1);
+  }
+  &:active {
+    background-color: opacityColor($white-color, 0.1);
+    border: 1px solid opacityColor($white-color, 1);
+  }
+  &:focus {
+    background-color: opacityColor($white-color, 0.1);
+    border: 1px solid opacityColor($white-color, 1);
+  }
+}
+.btn-primary {
+  color: $white-color;
+  background-color: $secondary-color;
+  border: 1px solid $secondary-color;
+
+  &:hover {
+    background-color: opacityColor($secondary-color, 0.1);
+    border: 1px solid opacityColor($secondary-color, 1);
+  }
+  &:active {
+    background-color: opacityColor($secondary-color, 0.1) !important;
+    border: 1px solid opacityColor($secondary-color, 1);
+  }
+  &:focus {
+    background-color: opacityColor($secondary-color, 0.1);
+    border: 1px solid opacityColor($secondary-color, 1);
+  }
+}
+
 .modal-footer {
   .btn-outline-primary {
     color: $white-color;

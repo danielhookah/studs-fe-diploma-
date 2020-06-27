@@ -14,4 +14,7 @@
   @if($breakpoint == small)  {
     @media (max-width: 600px) { @content }
   }
+  @if($breakpoint == "<381")  {
+    @media (max-width: 381px) { @content }
+  }
 }

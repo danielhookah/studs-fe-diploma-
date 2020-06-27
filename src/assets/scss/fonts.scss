@@ -1,20 +1,20 @@
 @font-face {
   font-family: Heebo;
-  src: url('../fonts/Heebo/static/Heebo-Light.ttf') format('truetype');
+  src: url('~@/assets/fonts/Heebo/static/Heebo-Light.ttf') format('truetype');
   font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
   font-family: Heebo;
-  src: url('../fonts/Heebo/static/Heebo-Medium.ttf') format('truetype');
+  src: url('~@/assets/fonts/Heebo/static/Heebo-Medium.ttf') format('truetype');
   font-weight: 500;
   font-style: normal
 }
 
 @font-face {
   font-family: Heebo;
-  src: url('../fonts/Heebo/static/Heebo-Bold.ttf') format('truetype');
+  src: url('~@/assets/fonts/Heebo/static/Heebo-Bold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal
 }
@@ -22,21 +22,21 @@
 
 @font-face {
   font-family: Ubuntu;
-  src: url("../fonts/Ubuntu/Ubuntu-Light.ttf") format('truetype');
+  src: url("~@/assets/fonts/Ubuntu/Ubuntu-Light.ttf") format('truetype');
   font-weight: 300;
   font-style: normal
 }
 
 @font-face {
   font-family: Ubuntu;
-  src: url("../fonts/Ubuntu/Ubuntu-Medium.ttf") format('truetype');
+  src: url("~@/assets/fonts/Ubuntu/Ubuntu-Medium.ttf") format('truetype');
   font-weight: 500;
   font-style: normal
 }
 
 @font-face {
   font-family: Ubuntu;
-  src: url("../fonts/Ubuntu/Ubuntu-Bold.ttf") format('truetype');
+  src: url("~@/assets/fonts/Ubuntu/Ubuntu-Bold.ttf") format('truetype');
   font-weight: 700;
   font-style: normal
 }

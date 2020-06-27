@@ -1,4 +1,4 @@
-@use "partials/partial";
+// @use "partials/partial";
 
 @import "reset";
 @import "mixins/mixins";
@@ -9,6 +9,10 @@
 @import "modals/glass-modal";
 @import "button";
 @import "icons";
+
+body {
+  //overflow: hidden;
+}
 
 .box { @include transform(rotate(30deg)); }
 
@@ -27,9 +31,6 @@
 //  width: 600px / 960px * 100%;
 //}
 
-p {
-  color: red;
-}
 
 div {
   font-family: Ubuntu, sans-serif;
@@ -40,4 +41,14 @@ div {
 .main-wrapper {
   height: 100%;
   background-color: $primary-color;
+}
+
+h4 {
+  @extend %ubuntu-bold;
+  margin: 0;
+  font-size: 110%;
+}
+
+a {
+  text-decoration: unset;
 }

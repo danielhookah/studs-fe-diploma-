@@ -1,2 +1,15 @@
 @import "input";
 @import "select";
+
+.form-group {
+  &.custom {
+    margin-bottom: 5px;
+
+    & label {
+      padding: 6px 0 6px 14px;
+      text-align: left;
+
+      @extend %heebo-medium
+    }
+  }
+}

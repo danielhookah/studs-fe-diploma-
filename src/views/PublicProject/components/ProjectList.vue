@@ -55,7 +55,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  @use "../../../assets/scss/partials/masonry";
+  @import "~@/assets/scss/partials/masonry";
 
   .container-custom {
     margin: 0 8px;

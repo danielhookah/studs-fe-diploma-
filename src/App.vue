@@ -18,7 +18,7 @@
 
   html, body {
     height: 100%;
-    background-color: $primary-color;
+    background-color: $primary-color !important;
   }
 
   #nav {

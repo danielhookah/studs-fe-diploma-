@@ -1,6 +1,6 @@
 <template>
   <div class="create-account-wrapper">
-    <b-button class="create-account-button">CREATE ACCOUNT</b-button>
+    <b-button @click="$router.push({ name: 'register' })" class="create-account-button">CREATE ACCOUNT</b-button>
   </div>
 </template>
 
@@ -34,6 +34,7 @@ export default {
     }
 
     .create-account-button {
+      color: $white-color;
       font-family: Heebo, sans-serif;
       font-weight: 700;
       border: unset;
