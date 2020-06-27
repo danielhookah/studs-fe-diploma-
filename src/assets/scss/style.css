@@ -492,11 +492,12 @@ input::placeholder {
 }
 
 .form-group.custom {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 .form-group.custom label {
   padding: 6px 0 6px 14px;
   text-align: left;
+  margin: 0;
 }
 
 .modal.custom .modal-dialog .modal-content {
@@ -504,7 +505,7 @@ input::placeholder {
   overflow: unset;
   border: unset;
   margin: 1rem;
-  color: #e8e8e8;
+  color: #f6f6f6;
 }
 .modal.custom .modal-dialog .modal-content:before {
   z-index: -1;
@@ -528,29 +529,29 @@ input::placeholder {
   border: unset;
 }
 .modal.custom .modal-dialog .modal-content button.close {
-  color: #e8e8e8;
+  color: #f6f6f6;
 }
 
 .btn-secondary {
   color: #806bff;
-  background-color: #e8e8e8;
-  border: 1px solid #e8e8e8;
+  background-color: #f6f6f6;
+  border: 1px solid #f6f6f6;
 }
 .btn-secondary:hover {
-  background-color: rgba(232, 232, 232, 0.1);
-  border: 1px solid #e8e8e8;
+  background-color: rgba(246, 246, 246, 0.1);
+  border: 1px solid #f6f6f6;
 }
 .btn-secondary:active {
-  background-color: rgba(232, 232, 232, 0.1);
-  border: 1px solid #e8e8e8;
+  background-color: rgba(246, 246, 246, 0.1);
+  border: 1px solid #f6f6f6;
 }
 .btn-secondary:focus {
-  background-color: rgba(232, 232, 232, 0.1);
-  border: 1px solid #e8e8e8;
+  background-color: rgba(246, 246, 246, 0.1);
+  border: 1px solid #f6f6f6;
 }
 
 .btn-primary {
-  color: #e8e8e8;
+  color: #f6f6f6;
   background-color: #806bff;
   border: 1px solid #806bff;
 }
@@ -568,13 +569,13 @@ input::placeholder {
 }
 
 .modal-footer .btn-outline-primary {
-  color: #e8e8e8;
-  border: 1px solid #e8e8e8;
+  color: #f6f6f6;
+  border: 1px solid #f6f6f6;
 }
 .modal-footer .btn-primary {
-  background-color: #e8e8e8;
+  background-color: #f6f6f6;
   color: #806bff;
-  border: 1px solid #e8e8e8;
+  border: 1px solid #f6f6f6;
 }
 
 .filter-icon.custom {

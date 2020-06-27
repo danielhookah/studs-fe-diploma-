@@ -28,11 +28,12 @@ export default {
 
 <style scoped lang="scss">
   #top-panel {
+    z-index: 100;
     height: 50px;
     width: 100%;
     position: fixed;
     top: 0;
-    background-color: $primary-color-light;
+    background-color: $white-color;
 
     -webkit-box-shadow: 0px -51px 11px 50px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px -51px 11px 50px rgba(0,0,0,0.75);
