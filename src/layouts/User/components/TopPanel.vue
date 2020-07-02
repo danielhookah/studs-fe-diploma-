@@ -35,9 +35,7 @@ export default {
     top: 0;
     background-color: $white-color;
 
-    -webkit-box-shadow: 0px -51px 11px 50px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px -51px 11px 50px rgba(0,0,0,0.75);
-    box-shadow: 0px -51px 11px 50px rgba(0,0,0,0.75);
+    @include box-shadow(0px -51px 11px 50px rgba(0,0,0,0.75));
 
     & .row {
       height: 100%;

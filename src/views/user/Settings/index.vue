@@ -88,9 +88,7 @@ export default {
       border-radius: 50%;
       background-color: $secondary-color;
 
-      -webkit-box-shadow: 0px 0px 10px -1px rgba(0,0,0,0.75);
-      -moz-box-shadow: 0px 0px 10px -1px rgba(0,0,0,0.75);
-      box-shadow: 0px 0px 10px -1px rgba(0,0,0,0.75);
+      @include box-shadow(0px 0px 10px -1px rgba(0,0,0,0.75));
 
       & svg {
         color: $white-color;

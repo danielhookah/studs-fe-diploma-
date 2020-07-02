@@ -1,62 +1,47 @@
 <template>
   <div id="user-news" class="">
-    <h1>XOXOXO</h1>
-    <p>qwe</p>
-    <p>qwe</p>
-    <p>qwe</p>
-    <p>qwe</p>
-    <p>qwe</p>
-    <p>qwe</p>
-    <p>qwe</p>
-    <p>qwe</p>
-    <p>qwe</p>
-    <p>qwe</p>
-    <p>qwe</p>
-    <p>qwe</p>
-    <p>qwe</p>
-    <p>qwe</p>
-    <p>qwe</p>
-    <p>qwe</p>
-    <p>qwe</p>
-    <p>qwe</p>
-    <p>qwe</p>
-    <p>qwe</p>
-    <p>qwe</p>
-    <p>qwe</p>
-    <p>qwe</p>
-    <p>qwe</p>
-    <p>qwe</p>
-    <p>qwe</p>
-    <p>qwe</p>
-    <p>qwe</p>
-    <p>qwe</p>
-    <p>qwe</p>
-    <p>qwe</p>
-    <p>qwe</p>
-    <p>qwe</p>
-    <p>qwe</p>
-    <p>qwe</p>
-    <p>qwe</p>
-    <p>qwe</p>
-    <p>qwe</p>
-    <p>qwe</p>
-    <p>qwe</p>
-    <p>qwe</p>
-    <p>qwe</p>
-    <p>qwe</p>
-    <h1>XOXOXO</h1>
-    <router-view/>
+    <b-container>
+      <CollapseRow :propKey="2" class="mt-3">
+        <template v-slot:content>
+          <p class="card-text">Collapse contents Here</p>
+          <p class="card-text">Collapse contents Here</p>
+          <p class="card-text">Collapse contents Here</p>
+          <p class="card-text">Collapse contents Here</p>
+          <p class="card-text">Collapse contents Here</p>
+          <p class="card-text">Collapse contents Here</p>
+        </template>
+      </CollapseRow>
+
+      <CollapseRow :propKey="3" class="mt-3">
+        <template v-slot:content>
+          <p class="card-text">Collapse contents Here</p>
+          <p class="card-text">Collapse contents Here</p>
+          <p class="card-text">Collapse contents Here</p>
+          <p class="card-text">Collapse contents Here</p>
+          <p class="card-text">Collapse contents Here</p>
+          <p class="card-text">Collapse contents Here</p>
+        </template>
+      </CollapseRow>
+
+      <CollapseRow :propKey="4" class="mt-3">
+        <template v-slot:content>
+          <p>qwe</p>
+        </template>
+      </CollapseRow>
+    </b-container>
   </div>
 </template>
 
 <script>
+import CollapseRow from '@/components/CollapseRow'
 
 export default {
   name: 'PublicProject',
   data () {
     return {}
   },
-  components: {},
+  components: { CollapseRow },
+  methods: {},
   created () {
 
   }
@@ -64,5 +49,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
+  #user-news {}
 </style>

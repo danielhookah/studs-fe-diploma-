@@ -587,6 +587,31 @@ input::placeholder {
   height: 40px;
 }
 
+@-webkit-keyframes rotate-180-r {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+}
+@keyframes rotate-180-r {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+}
+.rotate-180-r {
+  -webkit-animation: rotate-180-r 0.4s;
+  animation: rotate-180-r 0.4s;
+}
+
 .box {
   -webkit-transform: rotate(30deg);
   -ms-transform: rotate(30deg);

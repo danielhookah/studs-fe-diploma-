@@ -1,5 +1,5 @@
 <template>
-  <div id="bottom-panel">
+  <div id="bottom-panel" :class="{'height-max': isNewIOS()}">
     <b-row class="h-100 align-items-center">
       <b-col>
         <b-link active-class="active" :to="{ name: 'user.news' }">
@@ -8,7 +8,7 @@
         </b-link>
       </b-col>
       <b-col>
-        <b-link active-class="active" :to="{ name: 'user.child' }">
+        <b-link active-class="active" :to="{ name: 'user.doings' }">
           <b-icon icon="file-text" font-scale="1.8"></b-icon>
           <p>my doings</p>
         </b-link>
@@ -43,6 +43,10 @@ export default {
 
 <style scoped lang="scss">
   #bottom-panel {
+    &.height-max {
+      height: 70px;
+    }
+
     z-index: 100;
     height: 50px;
     width: 100%;
@@ -50,9 +54,7 @@ export default {
     bottom: 0;
     background-color: $white-color;
 
-    -webkit-box-shadow: 0px 53px 11px 50px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 0px 53px 11px 50px rgba(0, 0, 0, 0.75);
-    box-shadow: 0px 53px 11px 50px rgba(0, 0, 0, 0.75);
+    @include box-shadow(0px 53px 11px 50px rgba(0, 0, 0, 0.75));
 
     & .col {
       height: 80%;

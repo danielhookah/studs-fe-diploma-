@@ -4,6 +4,20 @@
   transform: $property;
 }
 
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+
+@mixin box-shadow($args...) {
+  -webkit-box-shadow: $args;
+  -moz-box-shadow: $args;
+  box-shadow: $args;
+}
+
 @mixin respond($breakpoint) {
   @if($breakpoint == desktop)  {
     @media (min-width: 992px) { @content }

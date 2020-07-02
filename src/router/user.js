@@ -11,6 +11,47 @@ export default {
       component: () => import('../views/user/News/index.vue'),
       meta: { title: 'user.news' }
     },
+    // DOINGS
+    {
+      path: 'doings',
+      name: 'user.doings',
+      component: () => import('../views/user/Doings/index.vue'),
+      meta: { title: 'user.doings' },
+      children: [
+        // D. PROJECT
+        {
+          path: 'project',
+          name: 'user.doings.project.list',
+          component: () => import('../views/user/Doings/Project/index.vue'),
+          meta: { title: 'user.doings.project.list' }
+        },
+        {
+          path: 'project/:id?',
+          name: 'user.doings.project',
+          component: () => import('../views/user/Doings/Project/project.vue'),
+          meta: { title: 'user.doings.project' }
+        },
+        // D. LESSON
+        {
+          path: 'lesson',
+          name: 'user.doings.lesson.list',
+          component: () => import('../views/user/Doings/Lesson/index.vue'),
+          meta: { title: 'user.doings.lesson.list' }
+        },
+        {
+          path: 'lesson/:id?',
+          name: 'user.doings.lesson',
+          component: () => import('../views/user/Doings/Lesson/lesson.vue'),
+          meta: { title: 'user.doings.lesson' }
+        },
+        {
+          path: 'lesson/:id/unit/:id?',
+          name: 'user.doings.lesson.unit',
+          component: () => import('../views/user/Doings/Lesson/LessonUnit/index.vue'),
+          meta: { title: 'user.doings.lesson.unit' }
+        }
+      ]
+    },
     // PROJECTS
     {
       path: 'projects',
