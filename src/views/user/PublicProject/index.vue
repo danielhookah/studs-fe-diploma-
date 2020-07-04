@@ -63,9 +63,7 @@ export default {
     }
   },
   components: { FilterSearchInput, TogglerButton, DesktopGuestSidebar, ProjectList },
-  created () {
-
-  }
+  created () {}
 }
 </script>
 

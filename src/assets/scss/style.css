@@ -422,6 +422,14 @@ h1.middle-title {
   font-size: 30px;
 }
 
+h2 {
+  font-size: 30px;
+}
+
+h3 {
+  font-size: 20px;
+}
+
 input {
   font-weight: 300;
   border: unset;
@@ -432,6 +440,9 @@ input.custom {
 }
 input.custom.form-control {
   border: 2px solid #806bff;
+}
+input.custom.error {
+  border: 2px solid #ff0303;
 }
 input::placeholder {
   font-family: Ubuntu, sans-serif;
@@ -610,6 +621,33 @@ input::placeholder {
 .rotate-180-r {
   -webkit-animation: rotate-180-r 0.4s;
   animation: rotate-180-r 0.4s;
+}
+
+@-webkit-keyframes fade-in-out {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes fade-in-out {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.fade-in-out {
+  -webkit-animation: fade-in-out 3s;
+  animation: fade-in-out 3s;
 }
 
 .box {

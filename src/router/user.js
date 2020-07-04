@@ -9,46 +9,47 @@ export default {
       path: 'news',
       name: 'user.news',
       component: () => import('../views/user/News/index.vue'),
-      meta: { title: 'user.news' }
+      meta: { title: 'events' }
     },
     // DOINGS
     {
       path: 'doings',
       name: 'user.doings',
       component: () => import('../views/user/Doings/index.vue'),
-      meta: { title: 'user.doings' },
+      meta: { title: 'doings' },
+      redirect: 'doings/project',
       children: [
         // D. PROJECT
         {
           path: 'project',
           name: 'user.doings.project.list',
           component: () => import('../views/user/Doings/Project/index.vue'),
-          meta: { title: 'user.doings.project.list' }
+          meta: { title: 'project list' }
         },
         {
           path: 'project/:id?',
           name: 'user.doings.project',
           component: () => import('../views/user/Doings/Project/project.vue'),
-          meta: { title: 'user.doings.project' }
+          meta: { title: 'project' }
         },
         // D. LESSON
         {
           path: 'lesson',
           name: 'user.doings.lesson.list',
           component: () => import('../views/user/Doings/Lesson/index.vue'),
-          meta: { title: 'user.doings.lesson.list' }
+          meta: { title: 'lesson list' }
         },
         {
           path: 'lesson/:id?',
           name: 'user.doings.lesson',
           component: () => import('../views/user/Doings/Lesson/lesson.vue'),
-          meta: { title: 'user.doings.lesson' }
+          meta: { title: 'lesson' }
         },
         {
           path: 'lesson/:id/unit/:id?',
           name: 'user.doings.lesson.unit',
           component: () => import('../views/user/Doings/Lesson/LessonUnit/index.vue'),
-          meta: { title: 'user.doings.lesson.unit' }
+          meta: { title: 'lesson unit' }
         }
       ]
     },
@@ -57,14 +58,14 @@ export default {
       path: 'projects',
       name: 'user.projects',
       component: () => import('../views/user/PublicProject/index.vue'),
-      meta: { title: 'user.projects' }
+      meta: { title: 'rest projects' }
     },
     // SETTINGS
     {
       path: 'settings',
       name: 'user.settings',
       component: () => import('../views/user/Settings/index.vue'),
-      meta: { title: 'user.settings' }
+      meta: { title: 'settings' }
     },
     // REST ???
     {

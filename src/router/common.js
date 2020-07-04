@@ -2,7 +2,8 @@ const common = {
   path: '/',
   name: 'common',
   component: () => import('../views/About'),
-  meta: { title: 'home' }
+  meta: { title: 'home' },
+  redirect: '/guest/projects'
 }
 
 const register = {
@@ -10,6 +11,13 @@ const register = {
   name: 'register',
   component: () => import('../views/Register'),
   meta: { title: 'register' }
+}
+
+const login = {
+  path: '/sign-in',
+  name: 'login',
+  component: () => import('../views/Login'),
+  meta: { title: 'login' }
 }
 
 const confirmAccount = {
@@ -22,5 +30,6 @@ const confirmAccount = {
 export {
   common,
   confirmAccount,
-  register
+  register,
+  login
 }

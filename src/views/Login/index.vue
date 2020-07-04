@@ -5,43 +5,6 @@
       <h3 class="mt-4 fade-in-out">can do this.</h3>
 
       <ValidationObserver ref="observer" @submit.prevent="onSubmit" tag="form">
-        <ValidationProvider name="firstName" rules="required" v-slot="v">
-          <b-form-group label="Your first name:" class="custom" label-for="input-first-name">
-            <b-form-input
-              class="custom" :class="{'error': v.errors[0]}"
-              id="input-first-name"
-              v-model="user.firstName"
-              type="text"
-              placeholder="Enter first name"
-            ></b-form-input>
-            <!--            <span>{{ v.errors[0] }}</span>-->
-          </b-form-group>
-        </ValidationProvider>
-
-        <ValidationProvider name="lastName" rules="required" v-slot="v">
-          <b-form-group label="Your last name:" class="custom" label-for="input-last-name">
-            <b-form-input
-              class="custom" :class="{'error': v.errors[0]}"
-              id="input-last-name"
-              v-model="user.lastName"
-              type="text"
-              placeholder="Enter last name"
-            ></b-form-input>
-          </b-form-group>
-        </ValidationProvider>
-
-        <ValidationProvider name="phone" rules="required|integer" v-slot="v">
-          <b-form-group label="Your phone:" class="custom" label-for="input-phone">
-            <b-form-input
-              class="custom" :class="{'error': v.errors[0]}"
-              id="input-phone"
-              v-model="user.phone"
-              type="number"
-              placeholder="Enter phone"
-            ></b-form-input>
-          </b-form-group>
-        </ValidationProvider>
-
         <ValidationProvider name="email" rules="required|email" v-slot="v">
           <b-form-group label="Your email address:" class="custom" label-for="input-1">
             <b-form-input
@@ -66,7 +29,7 @@
 <script>
 
 export default {
-  name: 'Register',
+  name: 'Login',
   data () {
     return {
       user: {

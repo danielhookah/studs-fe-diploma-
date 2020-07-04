@@ -19,6 +19,7 @@
     "masonry-layout": "^4.2.2",
     "portal-vue": "^2.1.7",
     "register-service-worker": "^1.7.1",
+    "vee-validate": "^3.3.7",
     "vue": "^2.6.11",
     "vue-masonry": "^0.11.8",
     "vue-multiselect": "^2.1.6",

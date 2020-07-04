@@ -22,7 +22,7 @@
           ></b-form-input>
         </b-form-group>
         <b-row class="m-0 mt-4 justify-content-end">
-          <b-button @click="$router.push({ name: 'common' })" variant="secondary" class="mr-2">to dashboard</b-button>
+          <b-button @click="$router.push({ name: 'guest.projects' })" variant="secondary" class="mr-2">to dashboard</b-button>
           <b-button variant="primary">confirm</b-button>
         </b-row>
       </b-form>

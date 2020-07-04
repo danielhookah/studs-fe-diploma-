@@ -36,6 +36,10 @@
       </div>
       <ProjectList/>
       <CreateAccountButton/>
+      <b-button style="margin: 80px 0" @click="$router.push({ name: 'user.news' })">
+        user template
+      </b-button>
+      <LoginButton/>
     </div>
     <!--  DESKTOP  -->
     <div v-else>
@@ -55,6 +59,7 @@ import CreateAccountButton from '@/views/PublicProject/components/details/Create
 import DesktopGuestSidebar from '@/views/PublicProject/components/DesktopGuestSidebar'
 import TogglerButton from '@/views/PublicProject/components/details/TogglerButton'
 import FilterSearchInput from '@/views/PublicProject/components/details/FilterSearchInput'
+import LoginButton from '@/views/PublicProject/components/details/LoginButton'
 
 export default {
   name: 'PublicProject',
@@ -64,7 +69,14 @@ export default {
       selectOptions: ['Select option', 'options', 'selected', 'mulitple', 'label', 'searchable', 'clearOnSelect', 'hideSelected', 'maxHeight', 'allowEmpty', 'showLabels', 'onChange', 'touched']
     }
   },
-  components: { FilterSearchInput, TogglerButton, DesktopGuestSidebar, CreateAccountButton, ProjectList },
+  components: {
+    LoginButton,
+    FilterSearchInput,
+    TogglerButton,
+    DesktopGuestSidebar,
+    CreateAccountButton,
+    ProjectList
+  },
   created () {
 
   }

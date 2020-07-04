@@ -1,12 +1,12 @@
 <template>
-  <div class="create-account-wrapper">
-    <b-button @click="$router.push({ name: 'register' })" class="create-account-button">CREATE ACCOUNT</b-button>
+  <div class="login-button-wrapper">
+    <b-button @click="$router.push({ name: 'login' })" class="login-button">LOGIN</b-button>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'CreateAccountButton',
+  name: 'LoginButton',
   data () {
     return {
     }
@@ -20,21 +20,21 @@ export default {
 <style scoped lang="scss">
   @import "../../../../assets/scss/colors";
 
-  .create-account-wrapper {
+  .login-button-wrapper {
     width: 40%;
-    left: 6%;
     z-index: 1;
     bottom: 0;
+    right: 6%;
     position: fixed;
     margin-bottom: 16px;
 
     &.desktop {
-      .create-account-button {
+      .login-button {
         width: 80%;
       }
     }
 
-    .create-account-button {
+    .login-button {
       color: $white-color;
       font-family: Heebo, sans-serif;
       font-weight: 700;

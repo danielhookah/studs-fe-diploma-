@@ -47,6 +47,8 @@
         </b-form-group>
       </b-row>
     </b-form>
+
+    <b-button @click="$router.push({ name: 'guest.projects' })" variant="secondary" class="mr-2">to dashboard</b-button>
     <router-view/>
   </div>
 </template>
@@ -66,9 +68,7 @@ export default {
       }
     }
   },
-  created () {
-
-  }
+  created () {}
 }
 </script>
 

@@ -42,9 +42,7 @@ export default {
   },
   components: { CollapseRow },
   methods: {},
-  created () {
-
-  }
+  created () {}
 }
 </script>
 

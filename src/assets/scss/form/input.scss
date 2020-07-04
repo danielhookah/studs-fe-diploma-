@@ -6,6 +6,10 @@ input {
     &.form-control {
       border: 2px solid $secondary-color;
     }
+
+    &.error {
+      border: 2px solid $error-color;
+    }
   }
 
   font-weight: 300;

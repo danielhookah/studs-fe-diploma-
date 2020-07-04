@@ -1,15 +1,25 @@
 <template>
-  <div id="doings-project">
-    <b-link :to="{ name: 'user.doings.project.list' }">
-      <b-button class="mr-2">
-        Projects
-      </b-button>
-    </b-link>
-    <b-link :to="{ name: 'user.doings.lesson.list' }">
-      <b-button class="ml-2">
-        Lessons
-      </b-button>
-    </b-link>
+  <div :key="$route.name" id="doings-project">
+    <div class="change-list-wrapper" :class="{'opened': menuOpened}">
+      <div class="change-list">
+        <p @click="pushToChildRoute('user.doings.project.list')">projects</p>
+        <hr>
+        <p @click="pushToChildRoute('user.doings.lesson.list')">lessons</p>
+      </div>
+      <div class="change-list-icon" :class="{'opened': menuOpened}" @click="toggleMenu">
+        <b-icon scale="1.6" icon="chevron-compact-down"/>
+      </div>
+    </div>
+    <!--    <b-link :to="{ name: 'user.doings.project.list' }">-->
+    <!--      <b-button class="mr-2">-->
+    <!--        Projects-->
+    <!--      </b-button>-->
+    <!--    </b-link>-->
+    <!--    <b-link :to="{ name: 'user.doings.lesson.list' }">-->
+    <!--      <b-button class="ml-2">-->
+    <!--        Lessons-->
+    <!--      </b-button>-->
+    <!--    </b-link>-->
     <router-view/>
   </div>
 </template>
@@ -20,6 +30,18 @@ export default {
   name: 'Doings',
   data () {
     return {
+      menuOpened: false
+    }
+  },
+  methods: {
+    toggleMenu () {
+      this.menuOpened = !this.menuOpened
+    },
+    pushToChildRoute (routeName) {
+      this.toggleMenu()
+      setTimeout(() => {
+        this.$router.push({ name: routeName })
+      }, 250)
     }
   },
   created () {
@@ -28,4 +50,57 @@ export default {
 </script>
 
 <style scoped lang="scss">
+  .change-list-wrapper {
+    position: absolute;
+    right: 35%;
+    top: -12%;
+    width: 30%;
+    z-index: 2;
+
+    @include transition(all 250ms linear);
+
+    &.opened {
+      top: 7%;
+    }
+
+    .change-list {
+      width: 100%;
+      margin: 0 auto;
+      background-color: $secondary-color;
+      color: $white-color;
+
+      hr {
+        border: 1px solid $white-color;
+        width: 80%;
+        margin: 3px auto;
+      }
+
+      p {
+        @extend %ubuntu-medium;
+        margin: 0;
+        padding: 20% 0;
+      }
+    }
+
+    .change-list-icon {
+      cursor: pointer;
+      width: 100%;
+      margin: 0 auto;
+      height: 20px;
+      border-bottom-left-radius: 100%;
+      border-bottom-right-radius: 100%;
+      background-color: $secondary-color;
+      color: $white-color;
+
+      svg {
+        @include transition(all 250ms linear);
+      }
+
+      &.opened {
+        svg {
+          transform: rotateX(180deg);
+        }
+      }
+    }
+  }
 </style>

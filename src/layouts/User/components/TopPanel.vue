@@ -1,16 +1,22 @@
 <template>
   <div id="top-panel">
     <b-row class="align-items-center">
-      <b-col @click="log">back</b-col>
-      <b-col class="top-panel-curved">
-        <h4>projects</h4>
+      <b-col @click="goToPrevRoute">
+        <b-icon icon="chevron-left" scale="1.8"/>
+        <span class="m-2 action-item">back</span>
       </b-col>
-      <b-col>new</b-col>
+      <b-col class="top-panel-curved">
+        <h4>{{currentPageName}}</h4>
+      </b-col>
+      <b-col>
+        <span class="action-item">action</span>
+      </b-col>
     </b-row>
   </div>
 </template>
 
 <script>
+import EventBus from '@/common/event-bus'
 
 export default {
   name: 'TopPanel',
@@ -22,7 +28,11 @@ export default {
       console.log(123)
     }
   },
-  created () {}
+  created () {
+    EventBus.$on('CHANGE_CURRENT_PAGE_NAME', (payload) => {
+      this.currentPageName = payload
+    })
+  }
 }
 </script>
 
@@ -35,7 +45,11 @@ export default {
     top: 0;
     background-color: $white-color;
 
-    @include box-shadow(0px -51px 11px 50px rgba(0,0,0,0.75));
+    @include box-shadow(0px -51px 11px 50px rgba(0, 0, 0, 0.75));
+
+    & .top-panel-curved {
+      padding: 0;
+    }
 
     & .row {
       height: 100%;
@@ -58,6 +72,7 @@ export default {
       border: 2px solid transparent;
       border-color: transparent $secondary-color transparent transparent;
     }
+
     &:before {
       content: '';
       pointer-events: none;
@@ -70,6 +85,10 @@ export default {
       border-radius: 15px 0 0 15px;
       border: 2px solid transparent;
       border-color: transparent transparent transparent $secondary-color;
+    }
+
+    .action-item {
+      @extend %ubuntu-medium;
     }
   }
 </style>

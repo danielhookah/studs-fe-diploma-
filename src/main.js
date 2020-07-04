@@ -17,16 +17,24 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 import { VueMasonryPlugin } from 'vue-masonry'
 
+import { ValidationProvider, ValidationObserver } from 'vee-validate'
+import './common/vee-validate-config'
+
 import 'vue-multiselect/dist/vue-multiselect.min.css'
 import Multiselect from 'vue-multiselect'
 
 import './assets/scss/style.scss'
+
+import ApiService from './common/api.service'
+ApiService.init()
 
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.use(VueMasonryPlugin)
 Vue.component('multiselect', Multiselect)
 Vue.mixin(globalMixin)
+Vue.component('ValidationProvider', ValidationProvider)
+Vue.component('ValidationObserver', ValidationObserver)
 
 Vue.config.productionTip = process.env.NODE_ENV === 'production'
 

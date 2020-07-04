@@ -18,6 +18,11 @@ export default {
   data () {
     return {}
   },
+  watch: {
+    $route (to, from) {
+      this.setCurrentPageName(to.meta.title)
+    }
+  },
   created () {}
 }
 </script>
