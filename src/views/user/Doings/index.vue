@@ -10,16 +10,6 @@
         <b-icon scale="1.6" icon="chevron-compact-down"/>
       </div>
     </div>
-    <!--    <b-link :to="{ name: 'user.doings.project.list' }">-->
-    <!--      <b-button class="mr-2">-->
-    <!--        Projects-->
-    <!--      </b-button>-->
-    <!--    </b-link>-->
-    <!--    <b-link :to="{ name: 'user.doings.lesson.list' }">-->
-    <!--      <b-button class="ml-2">-->
-    <!--        Lessons-->
-    <!--      </b-button>-->
-    <!--    </b-link>-->
     <router-view/>
   </div>
 </template>
@@ -53,14 +43,14 @@ export default {
   .change-list-wrapper {
     position: absolute;
     right: 35%;
-    top: -12%;
+    top: -80px;
     width: 30%;
     z-index: 2;
 
     @include transition(all 250ms linear);
 
     &.opened {
-      top: 7%;
+      top: 50px;
     }
 
     .change-list {
