@@ -1,9 +1,9 @@
 <template>
   <div id="doings-lesson-list">
     <b-container>
-      <h1>asd</h1>
+      <h1 class="middle-title">Title 1</h1>
       <b-row class="justify-content-around">
-        <b-card class="custom">
+        <b-card class="custom" @click="$router.push({name: 'user.doings.lesson', params: {id: 1}})">
           <h1>qwe</h1>
         </b-card>
         <b-card class="custom">
@@ -16,7 +16,7 @@
           <h1>qwe</h1>
         </b-card>
       </b-row>
-      <h1>asd</h1>
+      <h1 class="middle-title">Title</h1>
       <b-row class="justify-content-around">
         <b-card class="custom">
           <h1>qwe</h1>
@@ -28,7 +28,7 @@
           <h1>qwe</h1>
         </b-card>
       </b-row>
-      <h1>asd</h1>
+      <h1 class="middle-title">asd</h1>
       <b-row class="justify-content-around">
         <b-card class="custom">
           <h1>qwe</h1>
@@ -54,12 +54,17 @@ export default {
   data () {
     return {}
   },
-  created () {}
+  created () {
+  }
 }
 </script>
 
 <style scoped lang="scss">
+  @import "~@/assets/scss/partials/card-custom";
+
   #doings-lesson-list {
+    margin-top: 2rem;
+
     & .row {
       margin: 0;
     }

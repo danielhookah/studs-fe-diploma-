@@ -28,7 +28,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
+  @import "~@/assets/scss/partials/card-custom";
+
   #doings-project-list {
+    margin-top: 2rem;
+
     & .row {
       margin: 0;
     }
@@ -36,7 +40,8 @@ export default {
     & .card.custom {
       @include box-shadow(0px 0px 13px -5px rgba(0,0,0,0.83));
       margin: 10px 0;
-      min-height: 80px;
+      min-height: 100px;
+      border-radius: 15px;
     }
   }
 </style>

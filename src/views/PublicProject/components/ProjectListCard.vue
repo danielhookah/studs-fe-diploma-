@@ -21,6 +21,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  @import "../../../assets/scss/partials/masonry";
-  @import "../../../assets/scss/partials/card-custom";
+  @import "~@/assets/scss/partials/masonry";
+  @import "~@/assets/scss/partials/card-custom";
 </style>

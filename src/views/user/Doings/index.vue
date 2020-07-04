@@ -1,6 +1,7 @@
 <template>
   <div :key="$route.name" id="doings-project">
-    <div class="change-list-wrapper" :class="{'opened': menuOpened}">
+    <div class="change-list-wrapper" :class="{'opened': menuOpened}"
+         v-if="menuAvailableRoutes.includes($route.name)">
       <div class="change-list">
         <p @click="pushToChildRoute('user.doings.project.list')">projects</p>
         <hr>
@@ -20,7 +21,8 @@ export default {
   name: 'Doings',
   data () {
     return {
-      menuOpened: false
+      menuOpened: false,
+      menuAvailableRoutes: ['user.doings.lesson.list', 'user.doings.project.list']
     }
   },
   methods: {
