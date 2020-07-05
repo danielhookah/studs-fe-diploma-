@@ -79,8 +79,14 @@ export default {
   },
   methods: {
     async onSubmit () {
-      if (await this.$refs.observer.validate() === false) return
+      try {
+        JSON.parse('asad')
+      } catch (e) {
+        this.$errorHelper.showApiError()
+        throw new Error('qew')
+      }
       console.log(23)
+      // if (await this.$refs.observer.validate() === false) return
     }
   },
   created () {

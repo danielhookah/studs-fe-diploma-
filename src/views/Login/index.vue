@@ -1,7 +1,7 @@
 <template>
   <div id="register">
     <b-container>
-      <h1 class="huge-title">ST<span class="animate__animated animate__flip">U</span>DS</h1>
+      <h1 class="huge-title">STs<span class="animate__animated animate__flip">U</span>DS</h1>
       <h3 class="mt-4 fade-in-out">can do this.</h3>
 
       <ValidationObserver ref="observer" @submit.prevent="onSubmit" tag="form">
@@ -42,7 +42,9 @@ export default {
   },
   methods: {
     async onSubmit () {
-      if (await this.$refs.observer.validate() === false) return
+      if (await this.$refs.observer.validate() === false) {
+        throw new Error('[RWV] CommentsService.get() article slug required to fetch comments')
+      }
       console.log(23)
     }
   },

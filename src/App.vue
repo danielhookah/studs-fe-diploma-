@@ -5,8 +5,28 @@
 </template>
 
 <script>
+import EventBus from '@/common/event-bus'
+
 export default {
-  name: 'App'
+  name: 'App',
+  methods: {
+    showErrorToast () {
+      this.$bvToast.toast('Toast with action', {
+        title: 'Warning!',
+        toaster: 'b-toaster-bottom-full',
+        solid: true,
+        variant: 'danger',
+        appendToast: false,
+        autoHideDelay: 10000
+      })
+    }
+  },
+  created () {
+    EventBus.$on('SHOW_ERROR', (payload) => {
+      this.showErrorToast()
+      console.log(payload)
+    })
+  }
 }
 </script>
 

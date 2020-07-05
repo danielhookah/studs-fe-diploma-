@@ -25,7 +25,9 @@ import Multiselect from 'vue-multiselect'
 
 import './assets/scss/style.scss'
 
-import ApiService from './common/api.service'
+import ApiService from './common/api-service'
+import errorHelper from '@/common/error'
+
 ApiService.init()
 
 Vue.use(BootstrapVue)
@@ -37,6 +39,11 @@ Vue.component('ValidationProvider', ValidationProvider)
 Vue.component('ValidationObserver', ValidationObserver)
 
 Vue.config.productionTip = process.env.NODE_ENV === 'production'
+Vue.prototype.$errorHelper = errorHelper
+
+Vue.config.errorHandler = (err, vm, info) => {
+  errorHelper.handleUndefinedError({ err, vm, info })
+}
 
 new Vue({
   router,

@@ -68,6 +68,12 @@ export default {
       }
     }
   },
+  beforeRouteEnter (to, from, next) {
+    next(vm => {
+
+      console.log(vm.user)
+    })
+  },
   created () {}
 }
 </script>

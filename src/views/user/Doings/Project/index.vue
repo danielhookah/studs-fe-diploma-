@@ -23,7 +23,8 @@ export default {
   data () {
     return {}
   },
-  created () {}
+  created () {
+  }
 }
 </script>
 
@@ -38,7 +39,7 @@ export default {
     }
 
     & .card.custom {
-      @include box-shadow(0px 0px 13px -5px rgba(0,0,0,0.83));
+      @include box-shadow(0px 0px 13px -5px rgba(0, 0, 0, 0.83));
       margin: 10px 0;
       min-height: 100px;
       border-radius: 15px;
