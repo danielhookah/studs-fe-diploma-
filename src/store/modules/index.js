@@ -3,10 +3,10 @@ const modules = {}
 
 requireModule.keys().forEach((fileName) => {
   if (fileName === './index.js') {
-    // return
+    return
   }
 
-  // modules[fileName] = requireModule(fileName).default
+  modules[fileName] = requireModule(fileName).default
 })
 
 export default modules

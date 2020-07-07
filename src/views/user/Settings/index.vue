@@ -68,11 +68,13 @@ export default {
       }
     }
   },
-  beforeRouteEnter (to, from, next) {
-    next(vm => {
-
-      console.log(vm.user)
-    })
+  computed: {
+    profile () {
+      return this.$store.getters.profile
+    }
+  },
+  mounted () {
+    this.$store.dispatch('FETCH_PROFILE', { id: 2 })
   },
   created () {}
 }

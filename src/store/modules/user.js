@@ -1,7 +1,7 @@
-import ApiService from '@/common/api.service'
+import { UserService } from '../../services/user/user-service'
+import errorHelper from '@/common/error'
 
 const state = {
-  user: {},
   profile: {}
 }
 
@@ -12,49 +12,24 @@ const getters = {
 }
 
 const actions = {
-  [FETCH_PROFILE] (context, payload) {
-    const { username } = payload
-    return ApiService.get('profiles', username)
-      .then(({ data }) => {
-        context.commit(SET_PROFILE, data.profile)
-        return data
+  FETCH_PROFILE (context, payload) {
+    console.log(payload)
+    const id = payload.id
+    return UserService.getItem(id)
+      .then((response) => {
+        console.log(response)
+        context.commit('SET_PROFILE', response)
+        return response
       })
-      .catch(() => {
-        // #todo SET_ERROR cannot work in multiple states
-        // context.commit(SET_ERROR, response.data.errors)
-      })
-  },
-  [FETCH_PROFILE_FOLLOW] (context, payload) {
-    const { username } = payload
-    return ApiService.post(`profiles/${username}/follow`)
-      .then(({ data }) => {
-        context.commit(SET_PROFILE, data.profile)
-        return data
-      })
-      .catch(() => {
-        // #todo SET_ERROR cannot work in multiple states
-        // context.commit(SET_ERROR, response.data.errors)
-      })
-  },
-  [FETCH_PROFILE_UNFOLLOW] (context, payload) {
-    const { username } = payload
-    return ApiService.delete(`profiles/${username}/follow`)
-      .then(({ data }) => {
-        context.commit(SET_PROFILE, data.profile)
-        return data
-      })
-      .catch(() => {
-        // #todo SET_ERROR cannot work in multiple states
-        // context.commit(SET_ERROR, response.data.errors)
+      .catch((error) => {
+        console.log(error)
+        errorHelper.showApiError('')
       })
   }
 }
 
 const mutations = {
-  // [SET_ERROR] (state, error) {
-  //   state.errors = error
-  // },
-  [SET_PROFILE] (state, profile) {
+  SET_PROFILE (state, profile) {
     state.profile = profile
     state.errors = {}
   }

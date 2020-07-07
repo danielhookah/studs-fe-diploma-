@@ -10,10 +10,10 @@ export class UserService {
     }
   }
 
-  static async getItem ({ email, password }) {
+  static async getItem (id) {
     try {
-      const response = await ApiService.get('qwe', 'qwe')
-      console.log(response)
+      const response = await ApiService.get('user', id)
+      return response
     } catch (e) {
       throw new Error(e)
     }
