@@ -1,9 +1,9 @@
 import ApiService from '@/common/api-service'
 
 export class UserService {
-  static async getList ({ email, password }) {
+  static async get (resource, params) {
     try {
-      const response = await ApiService.query('qwe', 'qwe')
+      const response = await ApiService.query(`user/${resource}`, params)
       console.log(response)
     } catch (e) {
       throw new Error(e)
@@ -19,9 +19,9 @@ export class UserService {
     }
   }
 
-  static async create ({ email, password }) {
+  static async create (data) {
     try {
-      const response = await ApiService.post('qwe', 'qwe')
+      const response = await ApiService.post('user', data)
       console.log(response)
     } catch (e) {
       throw new Error(e)

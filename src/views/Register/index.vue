@@ -79,14 +79,8 @@ export default {
   },
   methods: {
     async onSubmit () {
-      try {
-        JSON.parse('asad')
-      } catch (e) {
-        this.$errorHelper.showApiError()
-        throw new Error('qew')
-      }
-      console.log(23)
-      // if (await this.$refs.observer.validate() === false) return
+      if (await this.$refs.observer.validate() === false) return
+      await this.$store.dispatch('CREATE_USER', this.user)
     }
   },
   created () {

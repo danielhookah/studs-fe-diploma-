@@ -21,7 +21,7 @@ const login = {
 }
 
 const confirmAccount = {
-  path: '/confirm-account',
+  path: '/mail/confirm-account/:hash',
   name: 'confirm.account',
   component: () => import('../views/ConfirmAccount'),
   meta: { title: 'confirm.account' }

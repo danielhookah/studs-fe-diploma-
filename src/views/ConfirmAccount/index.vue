@@ -46,6 +46,7 @@ export default {
     }
   },
   created () {
+    this.$store.dispatch('CHECK_USER_HASH', this.$route.params.hash)
   }
 }
 </script>
