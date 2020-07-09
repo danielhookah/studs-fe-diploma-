@@ -38,12 +38,17 @@ const ApiService = {
     return Vue.axios.post(`${resource}`, params)
   },
 
-  update (resource, slug, params) {
-    return Vue.axios.put(`${resource}/${slug}`, params)
-  },
-
   put (resource, params) {
-    return Vue.axios.put(`${resource}`, params)
+    return new Promise((resolve, reject) => {
+      return Vue.axios.put(`${resource}`, params)
+        .then(response => {
+          resolve(response)
+        })
+        .catch(error => {
+          errorHelper.showApiError(error.response.data.data.message)
+          reject(error.response)
+        })
+    })
   },
 
   delete (resource) {

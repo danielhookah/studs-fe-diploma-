@@ -23,13 +23,8 @@ export class UserService {
     }
   }
 
-  static async edit ({ email, password }) {
-    try {
-      const response = await ApiService.put('qwe', 'qwe')
-      console.log(response)
-    } catch (e) {
-      throw new Error(e)
-    }
+  static async edit (subResource = '', data) {
+    return await ApiService.put(`user/${subResource}`, data)
   }
 
   static async delete ({ email, password }) {

@@ -48,7 +48,7 @@
       </b-row>
     </b-form>
 
-    <b-button @click="$router.push({ name: 'guest.projects' })" variant="secondary" class="mr-2">to dashboard</b-button>
+    <b-button @click="$router.push({ name: 'guest.projects' })" variant="secondary" class="mr-2">dashboard</b-button>
     <router-view/>
   </div>
 </template>

@@ -39,6 +39,17 @@ const actions = {
         errorHelper.showApiError('')
       })
   },
+  EDIT_USER (context, payload) {
+    console.log(payload)
+    return UserService.edit(payload.resource, payload.data)
+      .then((response) => {
+        console.log(response)
+        context.commit('SET_USER', response)
+        return response
+      })
+      // .catch((error) => {
+      // })
+  },
   CHECK_USER_HASH (context, payload) {
     return new Promise((resolve, reject) => {
       UserService.get('check-hash-actual/' + payload)

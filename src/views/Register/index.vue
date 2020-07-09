@@ -55,7 +55,7 @@
         </ValidationProvider>
 
         <b-row class="m-0 mt-4 justify-content-end">
-          <b-button @click="$router.push({ name: 'guest.projects' })" variant="secondary" class="mr-2">to dashboard</b-button>
+          <b-button @click="$router.push({ name: 'guest.projects' })" variant="secondary" class="mr-2">dashboard</b-button>
           <b-button type="submit" variant="primary">register</b-button>
         </b-row>
       </ValidationObserver>
