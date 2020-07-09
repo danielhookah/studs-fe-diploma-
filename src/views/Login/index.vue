@@ -22,7 +22,7 @@
             <b-form-input
               class="custom" :class="{'error': v.errors[0]}"
               id="input-1"
-              v-model="user.email"
+              v-model="user.password"
               type="password"
               placeholder="******"
             ></b-form-input>
@@ -48,19 +48,15 @@ export default {
   data () {
     return {
       user: {
-        firstName: '',
-        lastName: '',
-        phone: '',
-        email: ''
+        email: '',
+        password: ''
       }
     }
   },
   methods: {
     async onSubmit () {
-      if (await this.$refs.observer.validate() === false) {
-        throw new Error('[RWV] CommentsService.get() article slug required to fetch comments')
-      }
-      console.log(23)
+      if (await this.$refs.observer.validate() === false) return
+      this.$store.dispatch('LOGIN', this.user)
     }
   },
   created () {
