@@ -40,17 +40,15 @@ const actions = {
       })
   },
   CHECK_USER_HASH (context, payload) {
-    console.log(payload)
-    return UserService.get('check-hash-actual/' + payload)
-      .then((response) => {
-        console.log(response)
-        context.commit('SET_USER', response)
-        return response
-      })
-      .catch((error) => {
-        console.log(error)
-        errorHelper.showApiError('')
-      })
+    return new Promise((resolve, reject) => {
+      UserService.get('check-hash-actual/' + payload)
+        .then((response) => {
+          resolve(response)
+        })
+        .catch(error => {
+          resolve(error)
+        })
+    })
   }
 }
 

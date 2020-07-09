@@ -41,9 +41,9 @@ Vue.component('ValidationObserver', ValidationObserver)
 Vue.config.productionTip = process.env.NODE_ENV === 'production'
 Vue.prototype.$errorHelper = errorHelper
 
-Vue.config.errorHandler = (err, vm, info) => {
-  errorHelper.handleUndefinedError({ err, vm, info })
-}
+// Vue.config.errorHandler = (err, vm, info) => {
+//   errorHelper.handleUndefinedError({ err, vm, info })
+// }
 
 new Vue({
   router,

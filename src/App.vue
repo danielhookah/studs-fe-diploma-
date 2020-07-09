@@ -10,21 +10,20 @@ import EventBus from '@/common/event-bus'
 export default {
   name: 'App',
   methods: {
-    showErrorToast () {
-      this.$bvToast.toast('Toast with action', {
-        title: 'Warning!',
+    showToast ({ message = '', title = '', variant = '', autoHideDelay = 10000 }) {
+      this.$bvToast.toast(message, {
+        title: title,
         toaster: 'b-toaster-bottom-full',
         solid: true,
-        variant: 'danger',
+        variant: variant,
         appendToast: false,
-        autoHideDelay: 10000
+        autoHideDelay: autoHideDelay
       })
     }
   },
   created () {
-    EventBus.$on('SHOW_ERROR', (payload) => {
-      this.showErrorToast()
-      console.log(payload)
+    EventBus.$on('SHOW_TOAST', (payload) => {
+      this.showToast(payload)
     })
   }
 }

@@ -1,13 +1,8 @@
 import ApiService from '@/common/api-service'
 
 export class UserService {
-  static async get (resource, params) {
-    try {
-      const response = await ApiService.query(`user/${resource}`, params)
-      console.log(response)
-    } catch (e) {
-      throw new Error(e)
-    }
+  static get (subResource = '', params) {
+    return ApiService.query(`user/${subResource}`, params)
   }
 
   static async getItem (id) {
