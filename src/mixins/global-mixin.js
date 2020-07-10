@@ -30,6 +30,16 @@ export default {
     },
     setCurrentPageName (name) {
       EventBus.$emit('CHANGE_CURRENT_PAGE_NAME', (name))
+    },
+    showToast ({ message = '', title = '', variant = '', autoHideDelay = 10000 }) {
+      this.$bvToast.toast(message, {
+        title: title,
+        toaster: 'b-toaster-bottom-full',
+        solid: true,
+        variant: variant,
+        appendToast: false,
+        autoHideDelay: autoHideDelay
+      })
     }
   }
 }

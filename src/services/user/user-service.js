@@ -17,7 +17,7 @@ export class UserService {
   static async create (data) {
     try {
       const response = await ApiService.post('user', data)
-      console.log(response)
+      return response
     } catch (e) {
       throw new Error(e)
     }

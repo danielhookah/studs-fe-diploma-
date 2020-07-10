@@ -3,28 +3,28 @@
     <b-container>
       <AnimatedLogo/>
       <h1 class="middle-title mt-2">confirm account</h1>
-      <ValidationObserver ref="observer" v-if="showForm"
+      <ValidationObserver ref="observer"
                           @submit.prevent="onSubmit" tag="form">
         <ValidationProvider name="password" rules="required" v-slot="v">
           <b-form-group label="Your password:" class="custom" label-for="input-password">
-            <b-form-input
-              class="custom" :class="{'error': v.errors[0]}"
-              id="input-password"
-              v-model="user.password"
-              type="password"
-              placeholder="******"
+            <b-form-input :disabled="disableFields"
+                          class="custom" :class="{'error': v.errors[0]}"
+                          id="input-password"
+                          v-model="user.password"
+                          type="password"
+                          placeholder="******"
             ></b-form-input>
           </b-form-group>
         </ValidationProvider>
 
         <ValidationProvider name="password-confirm" rules="required" v-slot="v">
           <b-form-group label="Confirm password:" class="custom" label-for="input-password-confirm">
-            <b-form-input
-              class="custom" :class="{'error': v.errors[0]}"
-              id="input-password-confirm"
-              v-model="user.passwordConfirm"
-              type="password"
-              placeholder="******"
+            <b-form-input :disabled="disableFields"
+                          class="custom" :class="{'error': v.errors[0]}"
+                          id="input-password-confirm"
+                          v-model="user.passwordConfirm"
+                          type="password"
+                          placeholder="******"
             ></b-form-input>
           </b-form-group>
         </ValidationProvider>
@@ -50,7 +50,7 @@ export default {
   mixins: [messageMixin],
   data () {
     return {
-      showForm: false,
+      disableFields: false,
       user: {
         id: null,
         password: '',
@@ -65,8 +65,10 @@ export default {
         resource: `${this.user.id}/confirm`,
         data: { password: this.user.password }
       }).then(response => {
-        console.log(response.data.data.message)
-        this.addMessage({ message: 'mes', title: 'tit' })
+        this.addMessage({
+          message: response.data.message,
+          title: 'Success'
+        })
         this.$router.push({ name: 'login' })
       }).catch(() => {
         this.user.password = ''
@@ -86,13 +88,9 @@ export default {
     }
   },
   async mounted () {
-    try {
-      const result = await this.$store.dispatch('CHECK_USER_HASH', this.$route.params.hash)
-      this.showForm = result.status === 200
-      this.user.id = result.data.data.id
-    } catch (e) {
-      this.showForm = false
-    }
+    const result = await this.$store.dispatch('CHECK_USER_HASH', this.$route.params.hash)
+    this.disableFields = result.status !== 200
+    this.user.id = result.data.data.id
   },
   created () {
   }

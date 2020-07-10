@@ -13,7 +13,8 @@ export class AuthService {
   static async getCsrfToken (data) {
     try {
       const response = await ApiService.get('profile/csrf-token', data)
-      console.log(response)
+      const token = response.headers['x-csrf-token']
+      window.localStorage.setItem('X-CSRF-Token', token)
     } catch (e) {
       throw new Error(e)
     }

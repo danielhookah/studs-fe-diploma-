@@ -9,18 +9,7 @@ import EventBus from '@/common/event-bus'
 
 export default {
   name: 'App',
-  methods: {
-    showToast ({ message = '', title = '', variant = '', autoHideDelay = 10000 }) {
-      this.$bvToast.toast(message, {
-        title: title,
-        toaster: 'b-toaster-bottom-full',
-        solid: true,
-        variant: variant,
-        appendToast: false,
-        autoHideDelay: autoHideDelay
-      })
-    }
-  },
+  methods: {},
   created () {
     this.$store.dispatch('FETCH_CSRF_TOKEN')
 

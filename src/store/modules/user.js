@@ -34,10 +34,6 @@ const actions = {
         context.commit('SET_USER', response)
         return response
       })
-      .catch((error) => {
-        console.log(error)
-        errorHelper.showApiError('')
-      })
   },
   EDIT_USER (context, payload) {
     console.log(payload)

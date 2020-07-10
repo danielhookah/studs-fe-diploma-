@@ -9,10 +9,13 @@ const ApiService = {
   init () {
     Vue.use(VueAxios, axios)
     Vue.axios.defaults.baseURL = API_URL
+    Vue.axios.defaults.withCredentials = true
   },
 
   setHeader () {
     // Vue.axios.defaults.headers.common.Authorization = `Token ${JwtService.getToken()}`
+    console.log(window.localStorage.getItem('x-csrf-token'))
+    Vue.axios.defaults.headers.common['X-CSRF-Token'] = window.localStorage.getItem('X-CSRF-Token')
   },
 
   query (resource, params) {
@@ -35,19 +38,22 @@ const ApiService = {
   },
 
   post (resource, params) {
+    this.setHeader()
     return new Promise((resolve, reject) => {
       return Vue.axios.post(`${resource}`, params)
         .then(response => {
           resolve(response)
         })
         .catch(error => {
-          errorHelper.showApiError(error.response.data.data.message)
+          const message = (error && error.response) ? error.response.data.data.message : 'ERROR'
+          errorHelper.showApiError(message)
           reject(error.response)
         })
     })
   },
 
   put (resource, params) {
+    this.setHeader()
     return new Promise((resolve, reject) => {
       return Vue.axios.put(`${resource}`, params)
         .then(response => {
@@ -61,6 +67,7 @@ const ApiService = {
   },
 
   delete (resource) {
+    this.setHeader()
     return Vue.axios.delete(resource).catch(error => {
       throw new Error(`[RWV] ApiService ${error}`)
     })
