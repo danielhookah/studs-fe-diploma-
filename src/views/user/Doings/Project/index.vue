@@ -32,7 +32,7 @@ export default {
   @import "~@/assets/scss/partials/card-custom";
 
   #doings-project-list {
-    margin-top: 2rem;
+    /*margin-top: 2rem;*/
 
     & .row {
       margin: 0;

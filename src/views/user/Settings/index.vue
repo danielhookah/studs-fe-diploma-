@@ -49,6 +49,7 @@
     </b-form>
 
     <b-button @click="$router.push({ name: 'guest.projects' })" variant="secondary" class="mr-2">dashboard</b-button>
+    <b-button @click="logout" variant="secondary" class="mr-2">logout</b-button>
     <router-view/>
   </div>
 </template>
@@ -71,6 +72,15 @@ export default {
   computed: {
     profile () {
       return this.$store.getters.profile
+    }
+  },
+  methods: {
+    logout () {
+      this.$store.dispatch('LOGOUT')
+        .then(() => {
+          this.$store.dispatch('FETCH_CSRF_TOKEN')
+          this.$router.push({ name: 'common' })
+        })
     }
   },
   mounted () {

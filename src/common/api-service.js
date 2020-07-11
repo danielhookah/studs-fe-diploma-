@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-// import JwtService from '@/common/jwt.service'
 import { API_URL } from '@/common/config'
 import errorHelper from './error'
 
@@ -14,7 +13,6 @@ const ApiService = {
 
   setHeader () {
     // Vue.axios.defaults.headers.common.Authorization = `Token ${JwtService.getToken()}`
-    console.log(window.localStorage.getItem('x-csrf-token'))
     Vue.axios.defaults.headers.common['X-CSRF-Token'] = window.localStorage.getItem('X-CSRF-Token')
   },
 

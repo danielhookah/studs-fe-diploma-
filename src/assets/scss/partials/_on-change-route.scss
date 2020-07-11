@@ -1,0 +1,20 @@
+// route transition
+.slide-leave-active {
+  transition-timing-function: ease-out;
+  transition: .5s;
+}
+.slide-enter-active {
+  transition-timing-function: ease-in;
+  transition: .5s;
+}
+.slide-enter-active, .slide-leave-active {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+.slide-enter {
+  transform: translateX(100%);
+}
+.slide-leave-to {
+  transform: translateX(-100%);
+}

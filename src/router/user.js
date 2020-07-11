@@ -66,13 +66,20 @@ export default {
       name: 'user.settings',
       component: () => import('@/views/user/Settings/index.vue'),
       meta: { title: 'settings' }
-    },
-    // REST ???
-    {
-      path: 'child',
-      name: 'user.child',
-      component: () => import('@/views/About.vue'),
-      meta: { title: 'user' }
     }
-  ]
+    // REST ???
+    // {
+    //   path: 'child',
+    //   name: 'user.child',
+    //   component: () => import('@/views/index.vue'),
+    //   meta: { title: 'user' }
+    // }
+  ],
+  beforeEnter (to, from, next) {
+    if (window.getCookie('authl') !== '1') {
+      next('/guest/projects')
+    } else {
+      next()
+    }
+  }
 }

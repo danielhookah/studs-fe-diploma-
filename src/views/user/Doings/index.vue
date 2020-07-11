@@ -11,7 +11,7 @@
         <b-icon scale="1.6" icon="chevron-compact-down"/>
       </div>
     </div>
-    <router-view/>
+    <router-view style="margin-top: 1rem"/>
   </div>
 </template>
 
@@ -43,16 +43,14 @@ export default {
 
 <style scoped lang="scss">
   .change-list-wrapper {
-    position: absolute;
-    right: 35%;
-    top: -80px;
+    margin: -125px auto 0;
     width: 30%;
     z-index: 2;
 
     @include transition(all 250ms linear);
 
     &.opened {
-      top: 50px;
+      margin-top: 0;
     }
 
     .change-list {

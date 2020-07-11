@@ -2,7 +2,10 @@
   <div id="user-main" class="main-wrapper">
     <TopPanel/>
     <div class="content">
-      <router-view/>
+      <!--      mode="out-in"   -->
+      <transition name="slide">
+        <router-view style="padding-bottom: 20px" :key="$route.path"/>
+      </transition>
     </div>
     <BottomPanel/>
   </div>
@@ -12,6 +15,7 @@
 
 import BottomPanel from '@/layouts/User/components/BottomPanel'
 import TopPanel from '@/layouts/User/components/TopPanel'
+
 export default {
   name: 'UserLayout',
   components: { TopPanel, BottomPanel },
@@ -23,7 +27,8 @@ export default {
       this.setCurrentPageName(to.meta.title)
     }
   },
-  created () {}
+  created () {
+  }
 }
 </script>
 
@@ -40,5 +45,7 @@ export default {
     margin-top: 50px;
     height: calc(100% - 100px);
     overflow-y: scroll;
+
+    @import "~@/assets/scss/partials/_on-change-route.scss";
   }
 </style>

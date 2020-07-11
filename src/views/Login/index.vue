@@ -3,7 +3,6 @@
     <b-container>
       <AnimatedLogo/>
       <h1 class="middle-title mt-2">login</h1>
-
       <ValidationObserver ref="observer" @submit.prevent="onSubmit" tag="form">
         <ValidationProvider name="email" rules="required|email" v-slot="v">
           <b-form-group label="Your email address:" class="custom" label-for="input-1">
@@ -57,6 +56,9 @@ export default {
     async onSubmit () {
       if (await this.$refs.observer.validate() === false) return
       this.$store.dispatch('LOGIN', this.user)
+        .then(() => {
+          this.$router.push({ name: 'user.news' })
+        })
     }
   },
   created () {
