@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.343ab82bd8cb497691e9276aa7b84cb7.js"
+  "/precache-manifest.96c8e200088564c3dbd33a4a574a2ca7.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "diplom_fe"});
