@@ -1,6 +1,8 @@
 <template>
   <div id="guest-main" class="main-wrapper">
-    <router-view/>
+    <transition name="slide">
+      <router-view/>
+    </transition>
   </div>
 </template>
 
@@ -11,9 +13,13 @@ export default {
   data () {
     return {}
   },
-  created () {}
+  created () {
+  }
 }
 </script>
 
 <style scoped lang="scss">
+  #guest-main {
+    @import "~@/assets/scss/partials/_on-change-route.scss";
+  }
 </style>
