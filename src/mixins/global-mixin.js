@@ -3,7 +3,8 @@ import EventBus from '@/common/event-bus'
 export default {
   data () {
     return {
-      currentPageName: 'page name'
+      currentPageName: 'page name',
+      actionName: 'action'
     }
   },
   methods: {

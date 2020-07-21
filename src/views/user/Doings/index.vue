@@ -17,6 +17,8 @@
 
 <script>
 
+import EventBus from '@/common/event-bus'
+
 export default {
   name: 'Doings',
   data () {
@@ -37,6 +39,7 @@ export default {
     }
   },
   created () {
+    EventBus.$emit('CHANGE_ACTION_NAME', 'list')
   }
 }
 </script>

@@ -3,13 +3,17 @@
     <b-row class="align-items-center">
       <b-col @click="goToPrevRoute">
         <b-icon icon="chevron-left" scale="1.8"/>
-        <span class="m-2 action-item">back</span>
+        <span class="ml-2 action-item">back</span>
       </b-col>
       <b-col class="top-panel-curved">
         <h4>{{currentPageName}}</h4>
       </b-col>
       <b-col>
-        <span class="action-item">action</span>
+        <b-icon v-if="actionName === 'list'" icon="list" scale="1.8"/>
+        <b-icon v-else-if="actionName === 'add'" icon="plus" scale="1.8"/>
+        <b-icon v-else-if="actionName === 'edit'" icon="pencil" scale="1.8"/>
+        <b-icon v-else-if="actionName === 'delete'" icon="x" scale="1.8"/>
+        <span v-else class="ml-2 action-item">{{actionName}}</span>
       </b-col>
     </b-row>
   </div>
@@ -31,6 +35,9 @@ export default {
   created () {
     EventBus.$on('CHANGE_CURRENT_PAGE_NAME', (payload) => {
       this.currentPageName = payload
+    })
+    EventBus.$on('CHANGE_ACTION_NAME', (payload) => {
+      this.actionName = payload
     })
   }
 }

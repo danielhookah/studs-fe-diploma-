@@ -17,11 +17,11 @@ export default {
       name: 'user.doings',
       component: () => import('@/views/user/Doings/index.vue'),
       meta: { title: 'doings' },
-      redirect: 'doings/project',
+      redirect: 'doings/projects',
       children: [
         // D. PROJECT
         {
-          path: 'project',
+          path: 'projects',
           name: 'user.doings.project.list',
           component: () => import('@/views/user/Doings/Project/index.vue'),
           meta: { title: 'project list' }

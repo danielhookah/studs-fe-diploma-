@@ -11,6 +11,9 @@
         <b-card class="custom">
           <h1>qwe</h1>
         </b-card>
+        <div class="add-project-button" @click="$router.push({name: 'user.doings.project'})">
+          <b-icon icon="plus" font-scale="1.5"/>
+        </div>
       </b-row>
     </b-container>
   </div>
@@ -43,6 +46,18 @@ export default {
       margin: 10px 0;
       min-height: 100px;
       border-radius: 15px;
+    }
+
+    & .add-project-button {
+      margin: 10px auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 40px;
+      width: 40px;
+      background-color: $secondary-color;
+      color: $white-color;
+      border-radius: 50%;
     }
   }
 </style>

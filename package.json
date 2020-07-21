@@ -22,6 +22,7 @@
     "register-service-worker": "^1.7.1",
     "vee-validate": "^3.3.7",
     "vue": "^2.6.11",
+    "vue-advanced-cropper": "^0.16.8",
     "vue-axios": "^2.1.5",
     "vue-masonry": "^0.11.8",
     "vue-multiselect": "^2.1.6",

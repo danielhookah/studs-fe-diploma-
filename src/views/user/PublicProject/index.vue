@@ -53,6 +53,7 @@ import ProjectList from '@/views/PublicProject/components/ProjectList'
 import DesktopGuestSidebar from '@/views/PublicProject/components/DesktopGuestSidebar'
 import TogglerButton from '@/views/PublicProject/components/details/TogglerButton'
 import FilterSearchInput from '@/views/PublicProject/components/details/FilterSearchInput'
+import EventBus from '@/common/event-bus'
 
 export default {
   name: 'PublicProject',
@@ -63,7 +64,9 @@ export default {
     }
   },
   components: { FilterSearchInput, TogglerButton, DesktopGuestSidebar, ProjectList },
-  created () {}
+  created () {
+    EventBus.$emit('CHANGE_ACTION_NAME', 'add')
+  }
 }
 </script>
 

@@ -34,6 +34,7 @@
 
 <script>
 import CollapseRow from '@/components/CollapseRow'
+import EventBus from '@/common/event-bus'
 
 export default {
   name: 'PublicProject',
@@ -42,7 +43,9 @@ export default {
   },
   components: { CollapseRow },
   methods: {},
-  created () {}
+  created () {
+    EventBus.$emit('CHANGE_ACTION_NAME', 'list')
+  }
 }
 </script>
 
