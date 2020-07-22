@@ -1,11 +1,10 @@
 <template>
   <div>
     <div class="wrap-img-input mb-3 mt-4" @click="showModal">
-      <div v-if="imgPath === 'none'" class="image-placeholder">
+      <div v-if="imgPath === null" class="image-placeholder">
         <b-icon icon="card-image" font-scale="3"/>
       </div>
-      <img v-else :src="imgPath" alt="img">
-      <!--      <img :src="image" alt="img">-->
+      <img v-else :src="image" alt="img">
     </div>
     <b-row>
       <!--      <b-col v-if="imageMultiple">-->
@@ -18,10 +17,17 @@
     </b-row>
 
     <b-modal ref="advancedCropperModal" hide-footer size="xl"
+             @hidden="onHideModal"
              no-close-on-backdrop>
       <cropper ref="cropper"
                classname="cropper"
-               :src="imgPath"
+               :src="image"
+               :restrictions="pixelsRestriction"
+               :minHeight="minHeight"
+               :minWidth="minWidth"
+               :maxWidth="maxWidth"
+               :maxHeight="maxHeight"
+               :stencil-props="{minAspectRatio: minAspectRatio,maxAspectRatio: maxAspectRatio}"
       />
 
       <div class="modal-footer pr-0">
@@ -47,13 +53,13 @@ export default {
   // mixins: [ToastMixin],
   props: {
     minAspectRatio: {
-      type: String,
-      default: '2/1',
+      type: Number,
+      default: 3 / 2,
       required: false
     },
     maxAspectRatio: {
-      type: String,
-      default: '6/2',
+      type: Number,
+      default: 5 / 2,
       required: false
     },
     minHeight: {
@@ -121,7 +127,7 @@ export default {
           // Note: arrow function used here, so that "this.imageData" refers to the imageData of Vue component
           // Read image as base64 and set to imageData
           // todo by emit to parent
-          this.imgPath = e.target.result
+          this.image = e.target.result
         }
         // Start the reader job - read file as a data url (base64 format)
         reader.readAsDataURL(input.files[0])
@@ -132,25 +138,24 @@ export default {
       this.coordinates = coordinates
       // You able to do different manipulations at a canvas
       // but there we just get a cropped image
-      this.imgPath = canvas.toDataURL()
 
-      // if (this.imageMultiple) {
-      //   console.log(this.imageId)
-      //   this.$emit('afterCropImage', { image: this.image, id: this.imageId })
-      //   this.$refs.advancedCropperModal.hide()
-      // } else {
-      this.$emit('afterCropImage', this.image)
+      this.$emit('afterCropImage', canvas.toDataURL())
       this.$refs.advancedCropperModal.hide()
-      // }
+      // this.imgPath = canvas.toDataURL()
+    },
+    onHideModal () {
+      if (this.imgPath === null) {
+        this.image = ''
+      } else {
+        this.$emit('refreshImageInput')
+      }
     }
   },
   created () {
-    console.log(this.imgPath)
     if (this.imgPath) {
       this.image = this.imgPath
     } else {
       this.image = ''
-      // this.image = 'https://placeimg.com/200/200/any'
     }
   }
 }

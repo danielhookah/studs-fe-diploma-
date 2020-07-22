@@ -38,9 +38,12 @@
           </b-form-group>
         </ValidationProvider>
 
-        <ImageInputAdvanced/>
+        <ImageInputAdvanced :key="project.image"
+                            :img-path="project.image"
+                            @afterCropImage="afterCropImage"
+        />
 
-        <b-row class="m-0 mt-4 justify-content-end">
+        <b-row class="m-0 mt-3 justify-content-end">
           <b-button type="submit" variant="primary">create</b-button>
         </b-row>
       </ValidationObserver>
@@ -51,26 +54,42 @@
 <script>
 
 import ImageInputAdvanced from '@/components/ImageInput'
+import messageMixin from '@/mixins/message-mixin'
 export default {
   name: 'DoingsLesson',
+  mixins: [messageMixin],
   components: { ImageInputAdvanced },
   data () {
     return {
       project: {
         name: '',
         description: '',
-        email: ''
+        email: '',
+        image: null
       }
     }
   },
   methods: {
+    afterCropImage (base64) {
+      this.project.image = base64
+    },
     async onSubmit () {
       if (await this.$refs.observer.validate() === false) return
-      return true
-      // this.$store.dispatch('LOGIN', this.user)
-      //   .then(() => {
-      //     this.$router.push({ name: 'user.news' })
-      //   })
+      this.$store.dispatch('CREATE_PROJECT', this.project)
+        .then(response => {
+          console.log(response)
+          this.addMessage({
+            message: response.data.message,
+            title: 'Success'
+          })
+          this.$router.push({ name: 'user.doings.project.list' })
+        })
+        // .catch(() => {
+        //   this.project.name = ''
+        //   this.project.description = ''
+        //   this.project.email = ''
+        //   this.project.image = null
+        // })
     }
   },
   created () {

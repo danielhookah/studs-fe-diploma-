@@ -21,12 +21,16 @@
 
 <script>
 
+import messageMixin from '@/mixins/message-mixin'
+
 export default {
   name: 'DoingsProjectList',
+  mixins: [messageMixin],
   data () {
     return {}
   },
   created () {
+    this.showWaitingMessages()
   }
 }
 </script>
