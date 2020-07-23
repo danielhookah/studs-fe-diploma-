@@ -2,7 +2,7 @@ import ApiService from '@/common/api-service'
 
 export class ProjectService {
   static get (subResource = '', params) {
-    return ApiService.query(`project/${subResource}`, params)
+    return ApiService.query(`project/${subResource}`, { params: params })
   }
 
   static async getItem (id) {

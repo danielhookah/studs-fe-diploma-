@@ -2,7 +2,8 @@ import { ProjectService } from '@/services/project/project-service'
 import errorHelper from '@/common/error'
 
 const state = {
-  project: {}
+  project: {},
+  projects: []
 }
 
 const getters = {
@@ -12,6 +13,18 @@ const getters = {
 }
 
 const actions = {
+  FETCH_PROJECT_LIST (context, payload) {
+    return ProjectService.get('list', payload)
+      .then((response) => {
+        console.log(response)
+        context.commit('SET_PROJECT_LIST', response)
+        return response
+      })
+      .catch((error) => {
+        console.log(error)
+        errorHelper.showApiError('')
+      })
+  },
   FETCH_PROJECT (context, payload) {
     console.log(payload)
     const id = payload.id
@@ -62,6 +75,9 @@ const actions = {
 const mutations = {
   SET_PROJECT (state, project) {
     state.project = project
+  },
+  SET_PROJECT_LIST (state, projects) {
+    state.projects = projects
   }
 }
 

@@ -3,12 +3,28 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import { API_URL } from '@/common/config'
 import errorHelper from './error'
+import store from '@/store'
+import router from '@/router'
 
 const ApiService = {
   init () {
     Vue.use(VueAxios, axios)
     Vue.axios.defaults.baseURL = API_URL
     Vue.axios.defaults.withCredentials = true
+
+    Vue.axios.interceptors.response.use(response => {
+      return response
+    }, error => {
+      if (error.response.status === 401) {
+        console.log(error.response)
+        store.dispatch('LOGOUT')
+          .then(() => {
+            store.dispatch('FETCH_CSRF_TOKEN')
+            router.push({ name: 'common' })
+          })
+      }
+      return error
+    })
   },
 
   setHeader () {

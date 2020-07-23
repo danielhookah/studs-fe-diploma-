@@ -2,14 +2,8 @@
   <div id="doings-project-list">
     <b-container>
       <b-row class="flex-column">
-        <b-card class="custom">
-          <h1>qwe</h1>
-        </b-card>
-        <b-card class="custom">
-          <h1>qwe</h1>
-        </b-card>
-        <b-card class="custom">
-          <h1>qwe</h1>
+        <b-card :key="index" v-for="(project,index) in projects" class="custom">
+          <h1>{{project.name}}</h1>
         </b-card>
         <div class="add-project-button" @click="$router.push({name: 'user.doings.project'})">
           <b-icon icon="plus" font-scale="1.5"/>
@@ -27,10 +21,24 @@ export default {
   name: 'DoingsProjectList',
   mixins: [messageMixin],
   data () {
-    return {}
+    return {
+      projects: []
+      // todo count & lazy load
+    }
+  },
+  methods: {
+    async fetchData () {
+      const { data } = await this.$store.dispatch('FETCH_PROJECT_LIST', {
+        perPage: 10,
+        firstResult: 0
+      })
+      console.log(data)
+      this.projects = data.projects
+    }
   },
   created () {
     this.showWaitingMessages()
+    this.fetchData()
   }
 }
 </script>
