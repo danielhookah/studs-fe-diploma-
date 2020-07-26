@@ -28,7 +28,13 @@ export default {
         },
         {
           path: 'project/:id?',
-          name: 'user.doings.project',
+          name: 'user.doings.project.data',
+          component: () => import('@/views/user/Doings/Project/projectData.vue'),
+          meta: { title: 'project data' }
+        },
+        {
+          path: 'project-form/:id?',
+          name: 'user.doings.project.form',
           component: () => import('@/views/user/Doings/Project/project.vue'),
           meta: { title: 'project' }
         },
@@ -76,6 +82,7 @@ export default {
     // }
   ],
   beforeEnter (to, from, next) {
+    console.log(window.getCookie('authl'))
     if (window.getCookie('authl') !== '1') {
       next('/guest/projects')
     } else {

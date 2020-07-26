@@ -24,8 +24,11 @@ import './assets/scss/style.scss'
 import ApiService from './common/api-service'
 import errorHelper from '@/common/error'
 
+import ScrollLoader from 'vue-scroll-loader'
+
 ApiService.init()
 
+Vue.use(ScrollLoader)
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.use(VueMasonryPlugin)
@@ -43,6 +46,7 @@ Vue.prototype.$errorHelper = errorHelper
 
 window.getCookie = function (name) {
   const value = `; ${document.cookie}`
+  console.log(value)
   const parts = value.split(`; ${name}=`)
   if (parts.length === 2) return parts.pop().split(';').shift()
   return false

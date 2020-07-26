@@ -5,9 +5,9 @@ export class ProjectService {
     return ApiService.query(`project/${subResource}`, { params: params })
   }
 
-  static async getItem (id) {
+  static async getItem (id, dataToPlug) {
     try {
-      const response = await ApiService.get('project', id)
+      const response = await ApiService.get('project', id, { params: dataToPlug })
       return response
     } catch (e) {
       throw new Error(e)
@@ -29,8 +29,8 @@ export class ProjectService {
 
   static async delete (id) {
     try {
-      const response = await ApiService.delete('project', id)
-      console.log(response)
+      const response = await ApiService.delete(`project/${id}`)
+      return response
     } catch (e) {
       throw new Error(e)
     }

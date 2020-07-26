@@ -17,6 +17,7 @@ const ApiService = {
     }, error => {
       if (error.response.status === 401) {
         console.log(error.response)
+        console.log(Vue.store)
         store.dispatch('LOGOUT')
           .then(() => {
             store.dispatch('FETCH_CSRF_TOKEN')
@@ -45,8 +46,8 @@ const ApiService = {
     })
   },
 
-  get (resource, slug = '') {
-    return Vue.axios.get(`${resource}/${slug}`).catch(error => {
+  get (resource, slug = '', params = null) {
+    return Vue.axios.get(`${resource}/${slug}`, params).catch(error => {
       throw new Error(`[RWV] ApiService ${error}`)
     })
   },

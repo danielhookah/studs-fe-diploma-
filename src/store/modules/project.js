@@ -16,7 +16,6 @@ const actions = {
   FETCH_PROJECT_LIST (context, payload) {
     return ProjectService.get('list', payload)
       .then((response) => {
-        console.log(response)
         context.commit('SET_PROJECT_LIST', response)
         return response
       })
@@ -26,12 +25,12 @@ const actions = {
       })
   },
   FETCH_PROJECT (context, payload) {
-    console.log(payload)
     const id = payload.id
-    return ProjectService.getItem(id)
+    const dataToPlug = payload.dataToPlug
+    return ProjectService.getItem(id, dataToPlug)
       .then((response) => {
         console.log(response)
-        context.commit('SET_PROJECT', response)
+        context.commit('SET_PROJECT', response.data)
         return response
       })
       .catch((error) => {
@@ -40,7 +39,6 @@ const actions = {
       })
   },
   CREATE_PROJECT (context, payload) {
-    console.log(payload)
     return ProjectService.create(payload)
       .then((response) => {
         console.log(response)
@@ -49,26 +47,20 @@ const actions = {
       })
   },
   EDIT_PROJECT (context, payload) {
-    console.log(payload)
     return ProjectService.edit(payload.resource, payload.data)
       .then((response) => {
         console.log(response)
         context.commit('SET_PROJECT', response)
         return response
       })
-      // .catch((error) => {
-      // })
   },
   DELETE_PROJECT (context, payload) {
-    return new Promise((resolve, reject) => {
-      ProjectService.delete('check-hash-actual/' + payload)
-        .then((response) => {
-          resolve(response)
-        })
-        .catch(error => {
-          resolve(error)
-        })
-    })
+    const id = payload.id
+    return ProjectService.delete(id)
+      .then((response) => {
+        context.commit('SET_PROJECT', {})
+        return response
+      })
   }
 }
 

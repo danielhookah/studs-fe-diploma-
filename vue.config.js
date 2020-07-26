@@ -1,6 +1,11 @@
 process.env.VUE_APP_VERSION = require('./package.json').version
 
 module.exports = {
+  devServer: {
+    // host: 'diplom-localhost.local',
+    host: '192.168.0.129',
+    disableHostCheck: true
+  },
   css: {
     loaderOptions: {
       // pass options to sass-loader

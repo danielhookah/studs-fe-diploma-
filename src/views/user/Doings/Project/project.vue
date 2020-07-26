@@ -44,7 +44,9 @@
         />
 
         <b-row class="m-0 mt-3 justify-content-end">
-          <b-button type="submit" variant="primary">create</b-button>
+          <b-button v-if="$route.params.id" @click="deleteProject" class="mr-3" variant="secondary">delete</b-button>
+          <b-button v-if="$route.params.id" type="submit" variant="primary">save</b-button>
+          <b-button v-else type="submit" variant="primary">create</b-button>
         </b-row>
       </ValidationObserver>
     </b-container>
@@ -75,7 +77,11 @@ export default {
     },
     async onSubmit () {
       if (await this.$refs.observer.validate() === false) return
-      this.$store.dispatch('CREATE_PROJECT', this.project)
+
+      const method = this.$route.params.id ? 'EDIT_PROJECT' : 'CREATE_PROJECT'
+      const data = this.$route.params.id ? { resource: this.project.id, data: this.project } : this.project
+
+      this.$store.dispatch(method, data)
         .then(response => {
           console.log(response)
           this.addMessage({
@@ -84,13 +90,36 @@ export default {
           })
           this.$router.push({ name: 'user.doings.project.list' })
         })
-        // .catch(() => {
-        //   this.project.name = ''
-        //   this.project.description = ''
-        //   this.project.email = ''
-        //   this.project.image = null
-        // })
+        .catch(() => {
+          this.project.name = ''
+          this.project.description = ''
+          this.project.email = ''
+          this.project.image = null
+        })
+    },
+    fetchData () {
+      this.$store.dispatch('FETCH_PROJECT', {
+        id: this.$route.params.id
+      }).then(response => {
+        console.log(response)
+        this.project = JSON.parse(JSON.stringify(response.data))
+      })
+    },
+    deleteProject () {
+      this.$store.dispatch('DELETE_PROJECT', {
+        id: this.$route.params.id
+      }).then(response => {
+        console.log(response)
+        this.addMessage({
+          message: response.data.message,
+          title: 'Success'
+        })
+        this.$router.push({ name: 'user.doings.project.list' })
+      })
     }
+  },
+  beforeMount () {
+    if (this.$route.params.id) this.fetchData()
   },
   created () {
   }
