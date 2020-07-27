@@ -1,55 +1,65 @@
 <template>
   <div id="user-settings">
-    <b-form>
-      <b-row class="align-items-center flex-column">
+    <ValidationObserver ref="observer" @submit.prevent="onSubmit" tag="form"
+                        class="d-flex flex-column align-items-center">
         <div class="my-4 avatar-wrapper">
           <b-icon icon="person" font-scale="2.5"/>
         </div>
 
-        <b-form-group label="Your first name:" class="custom" label-for="input-first-name">
-          <b-form-input
-            class="custom"
-            id="input-first-name"
-            v-model="user.firstName"
-            type="text" required
-            placeholder="Mark"
-          ></b-form-input>
-        </b-form-group>
+        <ValidationProvider name="firstName" rules="required" v-slot="v">
+          <b-form-group label="Your first name:" class="custom" label-for="input-first-name">
+            <b-form-input
+              class="custom" :class="{'error': v.errors[0]}"
+              id="input-first-name"
+              v-model="user.firstName"
+              type="text" required
+              placeholder="Mark"
+            ></b-form-input>
+          </b-form-group>
+        </ValidationProvider>
 
-        <b-form-group label="Your last name:" class="custom" label-for="input-last-name">
-          <b-form-input
-            class="custom"
-            id="input-last-name"
-            v-model="user.lastName"
-            type="text" required
-            placeholder="Brown"
-          ></b-form-input>
-        </b-form-group>
+        <ValidationProvider name="lastName" rules="required" v-slot="v">
+          <b-form-group label="Your last name:" class="custom" label-for="input-last-name">
+            <b-form-input
+              class="custom" :class="{'error': v.errors[0]}"
+              id="input-last-name"
+              v-model="user.lastName"
+              type="text" required
+              placeholder="Brown"
+            ></b-form-input>
+          </b-form-group>
+        </ValidationProvider>
 
-        <b-form-group label="Your email:" class="custom" label-for="input-email">
-          <b-form-input
-            class="custom"
-            id="input-email"
-            v-model="user.email"
-            type="text" required
-            placeholder="example@test.com"
-          ></b-form-input>
-        </b-form-group>
+        <ValidationProvider name="email" rules="required|email" v-slot="v">
+          <b-form-group label="Your email:" class="custom" label-for="input-email">
+            <b-form-input
+              class="custom" :class="{'error': v.errors[0]}"
+              id="input-email"
+              v-model="user.email"
+              type="text" required
+              placeholder="example@test.com"
+            ></b-form-input>
+          </b-form-group>
+        </ValidationProvider>
 
-        <b-form-group label="Your phone:" class="custom" label-for="input-phone">
-          <b-form-input
-            class="custom"
-            id="input-phone"
-            v-model="user.phone"
-            type="text" required
-            placeholder="+1234567890"
-          ></b-form-input>
-        </b-form-group>
+        <ValidationProvider name="phone" rules="required|integer" v-slot="v">
+          <b-form-group label="Your phone:" class="custom" label-for="input-phone">
+            <b-form-input
+              class="custom" :class="{'error': v.errors[0]}"
+              id="input-phone"
+              v-model="user.phone"
+              type="text" required
+              placeholder="+1234567890"
+            ></b-form-input>
+          </b-form-group>
+        </ValidationProvider>
+<!--      </b-row>-->
+
+      <b-row class="justify-content-around mt-3 w-100">
+        <b-button @click="logout" variant="secondary" class="mr-2">logout</b-button>
+        <b-button type="submit" variant="primary" class="mr-2">save</b-button>
       </b-row>
-    </b-form>
-
-    <b-button @click="$router.push({ name: 'guest.projects' })" variant="secondary" class="mr-2">dashboard</b-button>
-    <b-button @click="logout" variant="secondary" class="mr-2">logout</b-button>
+    </ValidationObserver>
     <router-view/>
   </div>
 </template>
@@ -69,9 +79,20 @@ export default {
       }
     }
   },
+  watch: {
+    profile (val) {
+      console.log(val)
+      this.user = val
+    }
+  },
   computed: {
-    profile () {
-      return this.$store.getters.profile
+    profile: {
+      get () {
+        return this.$store.getters.profile
+      },
+      set (value) {
+        this.$store.commit('SET_PROFILE', value)
+      }
     }
   },
   methods: {
@@ -81,12 +102,27 @@ export default {
           this.$store.dispatch('FETCH_CSRF_TOKEN')
           this.$router.push({ name: 'common' })
         })
+    },
+    async onSubmit () {
+      if (await this.$refs.observer.validate() === false) return
+      this.$store.dispatch('EDIT_USER', { resource: this.user.id, data: this.user })
+        .then(response => {
+          this.showToast({
+            message: response.data.message,
+            title: 'Success',
+            variant: 'success'
+          })
+        })
     }
   },
   mounted () {
-    this.$store.dispatch('FETCH_PROFILE', { id: 2 })
   },
-  created () {}
+  created () {
+    this.$store.dispatch('FETCH_PROFILE')
+      .then((response) => {
+        this.user = this.cloneObject(response.data)
+      })
+  }
 }
 </script>
 
@@ -96,7 +132,7 @@ export default {
       margin: 0;
     }
 
-    & .form-group.custom {
+    form span {
       width: 80%;
     }
 
@@ -106,7 +142,7 @@ export default {
       border-radius: 50%;
       background-color: $secondary-color;
 
-      @include box-shadow(0px 0px 10px -1px rgba(0,0,0,0.75));
+      @include box-shadow(0px 0px 10px -1px rgba(0, 0, 0, 0.75));
 
       & svg {
         color: $white-color;

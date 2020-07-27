@@ -14,6 +14,7 @@ export default {
   methods: {},
   created () {
     this.$store.dispatch('FETCH_CSRF_TOKEN')
+    this.$store.dispatch('FETCH_PROFILE')
 
     EventBus.$on('SHOW_TOAST', (payload) => {
       this.showToast(payload)

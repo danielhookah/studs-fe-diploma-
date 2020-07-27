@@ -13,10 +13,11 @@ const getters = {
 
 const actions = {
   FETCH_PROFILE (context, payload) {
-    const id = payload.id
+    const id = payload ? payload.id : '0'
+
     return UserService.getItem(id)
       .then((response) => {
-        context.commit('SET_PROFILE', response)
+        context.commit('SET_PROFILE', response.data)
         return response
       })
       .catch((error) => {

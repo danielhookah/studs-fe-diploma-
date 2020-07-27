@@ -41,6 +41,9 @@ export default {
         appendToast: false,
         autoHideDelay: autoHideDelay
       })
+    },
+    cloneObject (obj) {
+      return JSON.parse(JSON.stringify(obj))
     }
   }
 }

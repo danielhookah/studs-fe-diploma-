@@ -1,55 +1,49 @@
 <template>
   <div class="container-custom">
-<!--    <b-container>-->
       <div class="public-project-grid">
         <div class="grid-sizer"></div>
         <div class="gutter-sizer"></div>
-        <ProjectListCard :class="{'grid-item--width2': (Math.random() > 0.8 && index > 8)}"
-                         :data="item" :key="index" v-for="(item,index) in blocks"/>
+<!--        :class="{'grid-item&#45;&#45;width2': (Math.random() > 0.8 && index > 8)}"-->
+        <div v-masonry transition-duration="0.3s" item-selector=".public-project-grid-item">
+          <div v-masonry-tile class="item" :key="index" v-for="(item,index) in listItems">
+            <ProjectListCard :data="item"
+                             :requestCount="requestCount"
+                             :key="index"
+            />
+          </div>
+        </div>
+        <scroll-loader class="bug-fix" :loader-method="fetchData" :loader-disable="loaderDisable">
+        </scroll-loader>
       </div>
-<!--    </b-container>-->
   </div>
 </template>
 
 <script>
-import Masonry from 'masonry-layout'
 import ProjectListCard from '@/views/PublicProject/components/ProjectListCard'
+import messageMixin from '@/mixins/message-mixin'
+import lazyLoadScrollMixin from '@/mixins/lazy-load-scroll-mixin'
 
 export default {
   name: 'ProjectList',
+  mixins: [messageMixin, lazyLoadScrollMixin],
   components: { ProjectListCard },
   data () {
     return {
-      blocks: [
-        'qasdasdasdasdasdasdasdadsweasdasdasdasdasdasdasdadsweasdasdasdasdas',
-        'QQQasdasdasdasdasdasdasd',
-        'qasdasdasdasdasdasdasdadsweasdasdasdasdasdasdasdadsweasdasdasdasdasdasdasdadsweqasdasdasdasdasdasdasdadsweasdasdasdasdasdasdasdadsweasdasdasdasdasdasdasdadswe',
-        'Almost before we knew it, we had left the ground Almost before we knew it, we had left the ground Almost before we knew it, we had left the ground',
-        'asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd',
-        'qasdasdasdasdasdasdasdadsweasdasdasdasdasdasdasdadsweasdasdasdasdas',
-        'asdasdasdasdasdasdasd',
-        'asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd',
-        'qasdasdasdasdasdasdasdadsweasdasdasdasdasdasdasdadsweasdasdasdasdas',
-        'asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd',
-        'qasdasdasdasdasdasdasdadsweasdasdasdasdasdasdasdadsweasdasdasdasdas',
-        'asdasdasdasdasdasdasd',
-        'asdasdasdasdasdasdasdasdasdasdasdasdasd',
-        'asdasdasdasdasdasdasd',
-        'asdasdasdasdasdasdasdasdasdasdasdasdasd'
-      ]
+      msnry: null,
+      requestCount: 0
     }
   },
-  mounted () {
-    var elem = document.querySelector('.public-project-grid')
-    var msnry = new Masonry(elem, {
-      // options
-      columnWidth: '.grid-sizer',
-      // gutter: '.gutter-sizer',
-      itemSelector: '.public-project-grid-item'
-    })
-    msnry.layout()
-  },
-  created () {
+  methods: {
+    async fetchData () {
+      console.log(2)
+      const { data } = await this.$store.dispatch('FETCH_PROJECT_LIST', {
+        perPage: this.perPage,
+        firstResult: this.firstResult += 10
+      })
+
+      data.projects.length < this.perPage && (this.loaderDisable = true)
+      this.listItems = this.listItems.concat(data.projects)
+    }
   }
 }
 </script>
@@ -59,5 +53,9 @@ export default {
 
   .container-custom {
     margin: 0 8px;
+
+    .bug-fix {
+      /*padding-top: 130%;*/
+    }
   }
 </style>
