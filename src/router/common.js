@@ -36,6 +36,12 @@ export default {
       name: 'confirm.account',
       component: () => import('@/views/ConfirmAccount'),
       meta: { title: 'confirm.account' }
+    },
+    {
+      path: 'project-info/:id?',
+      name: 'project.data.info',
+      component: () => import('@/views/user/Doings/Project/components/projectData.vue'),
+      meta: { title: 'project data' }
     }
   ],
   beforeEnter (to, from, next) {

@@ -42,6 +42,10 @@ export default {
         autoHideDelay: autoHideDelay
       })
     },
+    isLoggedIn () {
+      var res = window.getCookie('authl')
+      return (res === '1')
+    },
     cloneObject (obj) {
       return JSON.parse(JSON.stringify(obj))
     }

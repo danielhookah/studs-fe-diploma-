@@ -90,7 +90,7 @@ export default {
   async mounted () {
     const result = await this.$store.dispatch('CHECK_USER_HASH', this.$route.params.hash)
     this.disableFields = result.status !== 200
-    this.user.id = result.data.data.id
+    this.user.id = result.data.id
   },
   created () {
   }

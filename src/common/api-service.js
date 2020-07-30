@@ -24,7 +24,8 @@ const ApiService = {
             router.push({ name: 'common' })
           })
       }
-      return error
+
+      errorHelper.showApiError(error.response.data.message)
     })
   },
 
@@ -37,19 +38,14 @@ const ApiService = {
     return new Promise((resolve, reject) => {
       Vue.axios.get(resource, params)
         .then(response => {
+          console.log(response)
           resolve(response)
-        })
-        .catch(error => {
-          errorHelper.showApiError(error.response.data.data.message)
-          reject(error.response)
         })
     })
   },
 
   get (resource, slug = '', params = null) {
-    return Vue.axios.get(`${resource}/${slug}`, params).catch(error => {
-      throw new Error(`[RWV] ApiService ${error}`)
-    })
+    return Vue.axios.get(`${resource}/${slug}`, params)
   },
 
   post (resource, params) {
@@ -58,11 +54,6 @@ const ApiService = {
       return Vue.axios.post(`${resource}`, params)
         .then(response => {
           resolve(response)
-        })
-        .catch(error => {
-          const message = (error && error.response) ? error.response.data.data.message : 'ERROR'
-          errorHelper.showApiError(message)
-          reject(error.response)
         })
     })
   },
@@ -74,18 +65,12 @@ const ApiService = {
         .then(response => {
           resolve(response)
         })
-        .catch(error => {
-          errorHelper.showApiError(error.response.data.data.message)
-          reject(error.response)
-        })
     })
   },
 
   delete (resource) {
     this.setHeader()
-    return Vue.axios.delete(resource).catch(error => {
-      throw new Error(`[RWV] ApiService ${error}`)
-    })
+    return Vue.axios.delete(resource)
   }
 }
 

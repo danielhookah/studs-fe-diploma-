@@ -6,21 +6,11 @@ export class ProjectService {
   }
 
   static async getItem (id, dataToPlug) {
-    try {
-      const response = await ApiService.get('project', id, { params: dataToPlug })
-      return response
-    } catch (e) {
-      throw new Error(e)
-    }
+    return await ApiService.get('project', id, { params: dataToPlug })
   }
 
   static async create (data) {
-    try {
-      const response = await ApiService.post('project', data)
-      return response
-    } catch (e) {
-      throw new Error(e)
-    }
+    return await ApiService.post('project', data)
   }
 
   static async edit (subResource = '', data) {
@@ -28,11 +18,10 @@ export class ProjectService {
   }
 
   static async delete (id) {
-    try {
-      const response = await ApiService.delete(`project/${id}`)
-      return response
-    } catch (e) {
-      throw new Error(e)
-    }
+    return await ApiService.delete(`project/${id}`)
+  }
+
+  static async applyUser (data) {
+    return await ApiService.post(`project/${data.projectId}/apply/${data.userId}`, data)
   }
 }

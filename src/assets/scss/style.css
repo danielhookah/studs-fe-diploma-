@@ -397,7 +397,7 @@ textarea {
   font-weight: 700;
   font-style: normal;
 }
-.form-group.custom label {
+.form-group.custom label, .form-group.custom-radio legend {
   font-family: Heebo, sans-serif;
   font-style: normal;
   font-weight: 500;
@@ -407,6 +407,12 @@ h1.middle-title, h1.huge-title {
   font-family: Ubuntu, sans-serif;
   font-style: normal;
   font-weight: 300;
+}
+
+.form-group.custom-radio .custom.custom-control.custom-radio label {
+  font-family: Ubuntu, sans-serif;
+  font-style: normal;
+  font-weight: 500;
 }
 
 h4 {
@@ -500,6 +506,34 @@ input::placeholder {
 .multiselect .multiselect__content-wrapper {
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
+}
+
+.form-group.custom-radio .bv-no-focus-ring[role=group] {
+  display: flex;
+  justify-content: space-around;
+}
+.form-group.custom-radio .custom.custom-control.custom-radio.error label.custom-control-label::before {
+  border: solid 2px #ff0303;
+  position: absolute;
+  top: 0.25rem;
+  left: -1.5rem;
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  pointer-events: none;
+  content: "";
+}
+.form-group.custom-radio legend {
+  text-align: left;
+  padding: 6px 0 6px 14px;
+  margin: 0;
+}
+.form-group.custom-radio .custom.custom-control.custom-radio label {
+  padding-top: 4px;
+}
+.form-group.custom-radio .custom-control-input:checked ~ .custom-control-label::before {
+  border-color: #806bff;
+  background-color: #806bff;
 }
 
 .form-group.custom {

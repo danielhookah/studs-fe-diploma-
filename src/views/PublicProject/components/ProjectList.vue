@@ -1,20 +1,22 @@
 <template>
   <div class="container-custom">
-      <div class="public-project-grid">
-        <div class="grid-sizer"></div>
-        <div class="gutter-sizer"></div>
-<!--        :class="{'grid-item&#45;&#45;width2': (Math.random() > 0.8 && index > 8)}"-->
-        <div v-masonry transition-duration="0.3s" item-selector=".public-project-grid-item">
-          <div v-masonry-tile class="item" :key="index" v-for="(item,index) in listItems">
-            <ProjectListCard :data="item"
-                             :requestCount="requestCount"
-                             :key="index"
-            />
-          </div>
+    <div class="public-project-grid">
+      <div class="grid-sizer"></div>
+      <div class="gutter-sizer"></div>
+      <!--        :class="{'grid-item&#45;&#45;width2': (Math.random() > 0.8 && index > 8)}"-->
+      <div v-masonry transition-duration="0.3s" item-selector=".public-project-grid-item">
+        <div v-masonry-tile class="item" :key="index" v-for="(item,index) in listItems"
+             @click="$router.push({ name: isLoggedIn() ? 'user.doings.project.data' : 'project.data.info',
+               params: {id: item.id} })">
+          <ProjectListCard :data="item"
+                           :requestCount="requestCount"
+                           :key="index"
+          />
         </div>
-        <scroll-loader class="bug-fix" :loader-method="fetchData" :loader-disable="loaderDisable">
-        </scroll-loader>
       </div>
+      <scroll-loader class="bug-fix" :loader-method="fetchData" :loader-disable="loaderDisable">
+      </scroll-loader>
+    </div>
   </div>
 </template>
 

@@ -1,13 +1,13 @@
 <template>
-  <div id="doings-project-data">
+  <div id="project-data">
     <img v-if="project.image" class="project-image" :src="project.image" :alt="project.name">
     <b-container>
       <b-row class="align-items-center data-row">
-        <b-col>
-          <b-button @click="$router.push({ name: 'guest.projects' })" variant="primary">
-            Lessons
-          </b-button>
-        </b-col>
+        <!--        <b-col>-->
+        <!--          <b-button @click="$router.push({ name: 'guest.projects' })" variant="primary">-->
+        <!--            Lessons-->
+        <!--          </b-button>-->
+        <!--        </b-col>-->
         <b-col>
           <h1 class="middle-title project-title">{{project.name}}</h1>
         </b-col>
@@ -28,15 +28,25 @@
         <p v-if="project.creator"><span class="font-weight-bolder">creator:</span> {{project.creator.firstName + ' ' +
           project.creator.lastName}}</p>
       </b-row>
+
+      <b-row class="justify-content-center px-3">
+        <b-button variant="primary" block
+                  @click="isLoggedIn() ? applyForProject() : $router.push({ name: 'register' })"
+                  class="create-account-button">
+          APPLY
+        </b-button>
+      </b-row>
     </b-container>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import messageMixin from '@/mixins/message-mixin'
 
 export default {
   name: 'DoingsProjectData',
+  mixins: [messageMixin],
   data () {
     return {}
   },
@@ -44,6 +54,18 @@ export default {
     ...mapGetters(['project'])
   },
   methods: {
+    applyForProject () {
+      this.$store.dispatch('APPLY_PROJECT_USER', {
+        projectId: this.$route.params.id,
+        userId: this.$store.getters.profile.id
+      }).then((response) => {
+        this.addMessage({
+          message: response.data.message,
+          title: 'Success'
+        })
+        this.$router.push({ name: 'user.doings.project.list' })
+      })
+    },
     fetchData () {
       this.$store.dispatch('FETCH_PROJECT', {
         id: this.$route.params.id,
@@ -61,7 +83,7 @@ export default {
 
 <style scoped lang="scss">
 
-  #doings-project-data {
+  #project-data {
     position: relative;
     margin-top: 0 !important;
 

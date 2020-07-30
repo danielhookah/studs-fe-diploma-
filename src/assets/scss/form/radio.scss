@@ -1,0 +1,41 @@
+.form-group.custom-radio {
+  .bv-no-focus-ring[role="group"] {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .custom.custom-control.custom-radio.error {
+    label.custom-control-label::before {
+      border: solid 2px $error-color;
+      position: absolute;
+      top: 0.25rem;
+      left: -1.5rem;
+      display: block;
+      width: 1rem;
+      height: 1rem;
+      pointer-events: none;
+      content: "";
+    }
+  }
+
+  legend {
+    text-align: left;
+    padding: 6px 0 6px 14px;
+    margin: 0;
+
+    @extend %heebo-medium
+  }
+
+  .custom.custom-control.custom-radio {
+    //padding: 0 20px;
+    label {
+      padding-top: 4px;
+      @extend %ubuntu-medium
+    }
+  }
+
+  .custom-control-input:checked ~ .custom-control-label::before {
+    border-color: $secondary-color;
+    background-color: $secondary-color;
+  }
+}

@@ -2,58 +2,70 @@
   <div id="user-settings">
     <ValidationObserver ref="observer" @submit.prevent="onSubmit" tag="form"
                         class="d-flex flex-column align-items-center">
-        <div class="my-4 avatar-wrapper">
-          <b-icon icon="person" font-scale="2.5"/>
-        </div>
+      <div class="my-4 avatar-wrapper">
+        <b-icon icon="person" font-scale="2.5"/>
+      </div>
 
-        <ValidationProvider name="firstName" rules="required" v-slot="v">
-          <b-form-group label="Your first name:" class="custom" label-for="input-first-name">
-            <b-form-input
-              class="custom" :class="{'error': v.errors[0]}"
-              id="input-first-name"
-              v-model="user.firstName"
-              type="text" required
-              placeholder="Mark"
-            ></b-form-input>
-          </b-form-group>
-        </ValidationProvider>
+      <ValidationProvider name="firstName" rules="required" v-slot="v">
+        <b-form-group label="Your first name:" class="custom" label-for="input-first-name">
+          <b-form-input
+            class="custom" :class="{'error': v.errors[0]}"
+            id="input-first-name"
+            v-model="user.firstName"
+            type="text" required
+            placeholder="Mark"
+          ></b-form-input>
+        </b-form-group>
+      </ValidationProvider>
 
-        <ValidationProvider name="lastName" rules="required" v-slot="v">
-          <b-form-group label="Your last name:" class="custom" label-for="input-last-name">
-            <b-form-input
-              class="custom" :class="{'error': v.errors[0]}"
-              id="input-last-name"
-              v-model="user.lastName"
-              type="text" required
-              placeholder="Brown"
-            ></b-form-input>
-          </b-form-group>
-        </ValidationProvider>
+      <ValidationProvider name="lastName" rules="required" v-slot="v">
+        <b-form-group label="Your last name:" class="custom" label-for="input-last-name">
+          <b-form-input
+            class="custom" :class="{'error': v.errors[0]}"
+            id="input-last-name"
+            v-model="user.lastName"
+            type="text" required
+            placeholder="Brown"
+          ></b-form-input>
+        </b-form-group>
+      </ValidationProvider>
 
-        <ValidationProvider name="email" rules="required|email" v-slot="v">
-          <b-form-group label="Your email:" class="custom" label-for="input-email">
-            <b-form-input
-              class="custom" :class="{'error': v.errors[0]}"
-              id="input-email"
-              v-model="user.email"
-              type="text" required
-              placeholder="example@test.com"
-            ></b-form-input>
-          </b-form-group>
-        </ValidationProvider>
+      <ValidationProvider name="email" rules="required|email" v-slot="v">
+        <b-form-group label="Your email:" class="custom" label-for="input-email">
+          <b-form-input
+            class="custom" :class="{'error': v.errors[0]}"
+            id="input-email"
+            v-model="user.email"
+            type="text" required
+            placeholder="example@test.com"
+          ></b-form-input>
+        </b-form-group>
+      </ValidationProvider>
 
-        <ValidationProvider name="phone" rules="required|integer" v-slot="v">
-          <b-form-group label="Your phone:" class="custom" label-for="input-phone">
-            <b-form-input
-              class="custom" :class="{'error': v.errors[0]}"
-              id="input-phone"
-              v-model="user.phone"
-              type="text" required
-              placeholder="+1234567890"
-            ></b-form-input>
-          </b-form-group>
-        </ValidationProvider>
-<!--      </b-row>-->
+      <ValidationProvider name="phone" rules="required|integer" v-slot="v">
+        <b-form-group label="Your phone:" class="custom" label-for="input-phone">
+          <b-form-input
+            class="custom" :class="{'error': v.errors[0]}"
+            id="input-phone"
+            v-model="user.phone"
+            type="text" required
+            placeholder="+1234567890"
+          ></b-form-input>
+        </b-form-group>
+      </ValidationProvider>
+
+      <ValidationProvider name="phone" rules="required|integer" v-slot="v">
+        <b-form-group label="Your role:" class="custom" label-for="input-role">
+          <b-form-input
+            class="custom" :class="{'error': v.errors[0]}"
+            id="input-role"
+            v-model="userRoleReadable"
+            disabled
+            type="text" required
+            placeholder="+1234567890"
+          ></b-form-input>
+        </b-form-group>
+      </ValidationProvider>
 
       <b-row class="justify-content-around mt-3 w-100">
         <b-button @click="logout" variant="secondary" class="mr-2">logout</b-button>
@@ -86,6 +98,10 @@ export default {
     }
   },
   computed: {
+    userRoleReadable () {
+      const roles = ['Student', 'Teacher', 'Creator']
+      return roles[this.user.role]
+    },
     profile: {
       get () {
         return this.$store.getters.profile

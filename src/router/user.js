@@ -29,7 +29,7 @@ export default {
         {
           path: 'project/:id?',
           name: 'user.doings.project.data',
-          component: () => import('@/views/user/Doings/Project/projectData.vue'),
+          component: () => import('@/views/user/Doings/Project/components/projectData.vue'),
           meta: { title: 'project data' }
         },
         {
@@ -82,8 +82,7 @@ export default {
     // }
   ],
   beforeEnter (to, from, next) {
-    console.log(window.getCookie('authl'))
-    if (window.getCookie('authl') !== '1') {
+    if (window.getCookie('authl') !== '1' && to.meta.forAll === undefined) {
       next('/guest/projects')
     } else {
       next()

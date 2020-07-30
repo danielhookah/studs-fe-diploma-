@@ -1,12 +1,5 @@
 import { AuthService } from '@/services/auth/auth-service'
 
-function getCookie (name) {
-  const value = `; ${document.cookie}`
-  const parts = value.split(`; ${name}=`)
-  if (parts.length === 2) return parts.pop().split(';').shift()
-  return false
-}
-
 const initialState = () => ({
   variable1: 111,
   variable2: 222,
@@ -17,10 +10,6 @@ const state = initialState()
 
 // Getters
 const getters = {
-  isLoggedIn (state) {
-    var res = getCookie('authl')
-    return (res === '1')
-  }
 }
 
 // Actions
