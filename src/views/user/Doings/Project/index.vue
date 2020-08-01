@@ -5,7 +5,7 @@
         <b-card :key="index" v-for="(project,index) in listItems" class="custom"
                 :style="'background-image: url(' + project.image + ')'"
                 :data-bg-img="project.image"
-                @click="$router.push({ name: 'user.doings.project.data', params: {id: project.id} })">
+                @click="$router.push({ name: 'user.doings.direction.list', params: {projectId: project.id} })">
           <h1>{{project.name}}</h1>
           <div class="edit-icon" @click.stop="$router.push({name: 'user.doings.project.form', params: { id: project.id } })">
             <b-icon icon="pencil" scale="1.8"/>
@@ -44,9 +44,6 @@ export default {
 
       data.projects.length < this.perPage && (this.loaderDisable = true)
       this.listItems = this.listItems.concat(data.projects)
-    },
-    editProject (id) {
-      console.log(id)
     }
   },
   beforeMount () {

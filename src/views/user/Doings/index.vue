@@ -3,9 +3,10 @@
     <div class="change-list-wrapper" :class="{'opened': menuOpened}"
          v-if="menuAvailableRoutes.includes($route.name)">
       <div class="change-list">
-        <p @click="pushToChildRoute('user.doings.project.list')">projects</p>
-        <hr>
-        <p @click="pushToChildRoute('user.doings.lesson.list')">lessons</p>
+        <p @click="pushToChildRoute('user.doings.project.list')"
+           v-if="$route.name === 'user.doings.lesson.list'">projects</p>
+        <p @click="pushToChildRoute('user.doings.lesson.list')"
+           v-if="$route.name === 'user.doings.project.list'">lessons</p>
       </div>
       <div class="change-list-icon" :class="{'opened': menuOpened}" @click="toggleMenu">
         <b-icon scale="1.6" icon="chevron-compact-down"/>
@@ -46,7 +47,7 @@ export default {
 
 <style scoped lang="scss">
   .change-list-wrapper {
-    margin: -125px auto 0;
+    margin: -50px auto 0;
     width: 30%;
     z-index: 2;
 

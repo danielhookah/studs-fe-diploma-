@@ -18,8 +18,12 @@
         <p>{{project.description}}</p>
       </b-row>
 
-      <b-row class="align-items-center flex-column data-row">
+      <b-row class="align-items-center flex-column data-row" v-if="project.directions">
         <h4 class="section-title">Directions</h4>
+        <div class="direction-item" v-for="(direction,index) in project.directions" :key="'direction'+index">
+          <h3>{{direction.name}}</h3>
+          <p>{{direction.description}}</p>
+        </div>
       </b-row>
 
       <b-row class="align-items-center flex-column data-row">
@@ -69,7 +73,7 @@ export default {
     fetchData () {
       this.$store.dispatch('FETCH_PROJECT', {
         id: this.$route.params.id,
-        dataToPlug: ['creator']
+        dataToPlug: ['creator', 'directions']
       })
     }
   },
@@ -124,6 +128,23 @@ export default {
 
     .section-title {
       margin: 0 auto 10px auto;
+    }
+
+    .direction-item {
+      background-color: opacityColor($primary-color, 0.4);
+      width: 100%;
+      margin: 10px auto;
+
+      h3 {
+        text-align: center;
+        margin: 0;
+        padding: 5px 20px;
+      }
+
+      p {
+        padding: 10px 20px;
+        word-wrap: break-word;
+      }
     }
   }
 </style>

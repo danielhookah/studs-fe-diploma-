@@ -14,7 +14,7 @@ const getters = {
 
 const actions = {
   // FETCH_PROJECT_LIST (context, payload) {
-  //   return ProjectService.get('list', payload)
+  //   return DirectionService.get('list', payload)
   //     .then((response) => {
   //       context.commit('SET_PROJECT_LIST', response)
   //       return response
@@ -27,7 +27,7 @@ const actions = {
   // FETCH_PROJECT (context, payload) {
   //   const id = payload.id
   //   const dataToPlug = payload.dataToPlug
-  //   return ProjectService.getItem(id, dataToPlug)
+  //   return DirectionService.getItem(id, dataToPlug)
   //     .then((response) => {
   //       console.log(response)
   //       context.commit('SET_PROJECT', response.data)
@@ -46,7 +46,7 @@ const actions = {
       })
   }
   // EDIT_PROJECT (context, payload) {
-  //   return ProjectService.edit(payload.resource, payload.data)
+  //   return DirectionService.edit(payload.resource, payload.data)
   //     .then((response) => {
   //       console.log(response)
   //       context.commit('SET_PROJECT', response)
@@ -55,7 +55,7 @@ const actions = {
   // },
   // DELETE_PROJECT (context, payload) {
   //   const id = payload.id
-  //   return ProjectService.delete(id)
+  //   return DirectionService.delete(id)
   //     .then((response) => {
   //       context.commit('SET_PROJECT', {})
   //       return response

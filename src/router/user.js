@@ -38,6 +38,19 @@ export default {
           component: () => import('@/views/user/Doings/Project/project.vue'),
           meta: { title: 'project' }
         },
+        // D. DIRECTION
+        {
+          path: 'directions/:projectId?',
+          name: 'user.doings.direction.list',
+          component: () => import('@/views/user/Doings/Direction/index'),
+          meta: { title: 'directions' }
+        },
+        {
+          path: ':projectId/direction-form/:id?',
+          name: 'user.doings.direction.form',
+          component: () => import('@/views/user/Doings/Direction/direction.vue'),
+          meta: { title: 'direction' }
+        },
         // D. LESSON
         {
           path: 'lesson',

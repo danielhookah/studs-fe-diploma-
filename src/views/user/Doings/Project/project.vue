@@ -16,13 +16,16 @@
 
         <ValidationProvider name="description" rules="required" v-slot="v">
           <b-form-group label="Project description:" class="custom" label-for="input-1">
-            <b-form-input
+            <b-form-textarea
               class="custom" :class="{'error': v.errors[0]}"
               id="input-1"
+              rows="3"
+              max-rows="8"
+              no-auto-shrink
               v-model="project.description"
               type="text"
               placeholder="Enter description"
-            ></b-form-input>
+            ></b-form-textarea>
           </b-form-group>
         </ValidationProvider>
 
@@ -43,6 +46,27 @@
                             @afterCropImage="afterCropImage"
         />
 
+        <div v-if="$route.params.id">
+          <h4 class="item-label">Directions</h4>
+          <div v-if="project.directions">
+            <div class="direction-card" v-for="(direction,index) in project.directions" :key="'direction'+index"
+                 @click="$router.push({
+                 name: 'user.doings.direction.form',
+                 params: {projectId: $route.params.id, id: direction.id
+                 }})">
+              <h3>{{direction.name}}</h3>
+              <p>{{direction.description}}</p>
+            </div>
+          </div>
+          <b-row>
+            <div class="add-direction-button" @click="$router.push({
+              name: 'user.doings.direction.form', params: {projectId: $route.params.id}
+            })">
+              <b-icon icon="plus"/>
+            </div>
+          </b-row>
+        </div>
+
         <b-row class="m-0 mt-3 justify-content-end">
           <b-button v-if="$route.params.id" @click="deleteProject" class="mr-3" variant="secondary">delete</b-button>
           <b-button v-if="$route.params.id" type="submit" variant="primary">save</b-button>
@@ -57,6 +81,7 @@
 
 import ImageInputAdvanced from '@/components/ImageInput'
 import messageMixin from '@/mixins/message-mixin'
+
 export default {
   name: 'DoingsLesson',
   mixins: [messageMixin],
@@ -83,7 +108,6 @@ export default {
 
       this.$store.dispatch(method, data)
         .then(response => {
-          console.log(response)
           this.addMessage({
             message: response.data.message,
             title: 'Success'
@@ -99,9 +123,9 @@ export default {
     },
     fetchData () {
       this.$store.dispatch('FETCH_PROJECT', {
-        id: this.$route.params.id
+        id: this.$route.params.id,
+        dataToPlug: ['directions']
       }).then(response => {
-        console.log(response)
         this.project = JSON.parse(JSON.stringify(response.data))
       })
     },
@@ -109,7 +133,6 @@ export default {
       this.$store.dispatch('DELETE_PROJECT', {
         id: this.$route.params.id
       }).then(response => {
-        console.log(response)
         this.addMessage({
           message: response.data.message,
           title: 'Success'
@@ -122,9 +145,50 @@ export default {
     if (this.$route.params.id) this.fetchData()
   },
   created () {
+    this.showWaitingMessages()
   }
 }
 </script>
 
 <style scoped lang="scss">
+  #doings-project {
+    .add-direction-button {
+      margin: 10px auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 40px;
+      width: 40px;
+      background-color: $secondary-color;
+      color: $white-color;
+      border-radius: 50%;
+    }
+
+    .item-label {
+      text-align: left;
+      padding: 6px 0 6px 14px;
+      margin: 0;
+
+      @extend %heebo-medium
+    }
+
+    .direction-card {
+      background-color: $white-color;
+      border-radius: 10px;
+      width: 100%;
+      margin: 10px auto;
+
+      h3 {
+        text-align: end;
+        margin: 0;
+        padding: 5px 20px;
+        background-color: opacityColor($primary-color, 0.4);
+      }
+
+      p {
+        padding: 10px 20px;
+        word-wrap: break-word;
+      }
+    }
+  }
 </style>
