@@ -4,7 +4,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/css/about.38f56995.css"
   },
   {
-    "revision": "ff65da79357ad6724727",
+    "revision": "84cedfca78e0649ab9ad",
     "url": "/css/app.ef17ea6a.css"
   },
   {
@@ -108,7 +108,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/fonts/Ubuntu-Medium.8e22c2a6.ttf"
   },
   {
-    "revision": "7381673692138991144b969ead7c092c",
+    "revision": "b637884d9737a6dbe53de0cdd1f18b88",
     "url": "/index.html"
   },
   {
@@ -116,8 +116,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/js/about.08a74f16.js"
   },
   {
-    "revision": "ff65da79357ad6724727",
-    "url": "/js/app.3b8b48e2.js"
+    "revision": "84cedfca78e0649ab9ad",
+    "url": "/js/app.971282a6.js"
   },
   {
     "revision": "6fe80f5fa062e26fddde",
