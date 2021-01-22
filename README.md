@@ -1,4 +1,4 @@
-# diplom_fe
+# studs_fe
 
 ## Project setup
 ```
